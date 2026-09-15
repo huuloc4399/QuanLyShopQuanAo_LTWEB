@@ -1,0 +1,86 @@
+BỘ CÔNG THƯƠNG
+TRƯỜNG ĐẠI HỌC CÔNG THƯƠNG
+THÀNH PHỐ HỒ CHÍ MINH
+BÁO CÁO ĐỒ ÁN MÔN HỌC
+LẬP TRÌNH WEB
+ĐỀ TÀI: <Tên đề tài>
+THÀNH PHỐ HỒ CHÍ MINH, NĂM 2026
+BỘ CÔNG THƯƠNG
+TRƯỜNG ĐẠI HỌC CÔNG THƯƠNG
+THÀNH PHỐ HỒ CHÍ MINH
+BÁO CÁO ĐỒ ÁN MÔN HỌC
+LẬP TRÌNH WEB
+ĐỀ TÀI: <Tên đề tài>
+Giảng viên hướng dẫn: <Tên GVHD>
+Sinh viên thực hiện:
+<MSSV> – <Họ và tên> – Nhóm trưởng
+<MSSV> – <Họ và tên>
+<MSSV> – <Họ và tên>
+<MSSV> – <Họ và tên>
+<MSSV> – <Họ và tên>
+THÀNH PHỐ HỒ CHÍ MINH, NĂM 2026
+MỤC LỤC
+BẢNG PHÂN CÔNG
+DANH MỤC HÌNH ẢNH
+CHƯƠNG 1: TỔNG QUAN ĐỀ TÀI
+1.1. Lý do chọn đề tài
+[Trình bày ngắn gọn bối cảnh và lý do vì sao nhóm chọn đề tài này, giải quyết bài toán thực tế nào. Ví dụ: Website Bán hàng, Website Bán hoa, Website Bán sách...]
+1.2. Mục tiêu đồ án
+[Nêu rõ các mục tiêu cần đạt được về mặt chức năng và kỹ thuật. VD: Xây dựng hoàn thiện chức năng CRUD, áp dụng chuẩn kiến trúc MVC trong ASP.NET, thiết kế giao diện thân thiện bằng HTML, CSS, Bootstrap...]
+CHƯƠNG 2: PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG
+2.1. Sơ đồ Use Case (UML Use Case)
+[Yêu cầu: Dán hình ảnh sơ đồ Use Case tổng quát của hệ thống vào đây. Đảm bảo hệ thống có ít nhất 2 Role người dùng: Admin và User/Khách hàng.]
+2.2. Thiết kế Cơ sở dữ liệu (ERD)
+[Yêu cầu: Dán hình ảnh sơ đồ thực thể liên kết (ERD) hoặc Diagram SQL Server vào đây. CSDL phải thể hiện rõ các bảng như Sản phẩm, Khách hàng, Đơn hàng, Chi tiết đơn hàng...]
+2.3. Mô tả chi tiết các bảng dữ liệu
+[Lập các bảng mô tả chi tiết các table trong Database đã thiết kế, ví dụ: bảng `users`, bảng `products`, bảng `categories`...]
+Tên trường (Column) | Kiểu dữ liệu (Type) | Khóa (Key) | Mô tả (Description)
+Tên trường (Column)
+Kiểu dữ liệu (Type)
+Khóa (Key)
+Mô tả (Description)
+id | BIGINT | PK | Khóa chính, tự động tăng
+id
+BIGINT
+PK
+Khóa chính, tự động tăng
+name | VARCHAR(255) |  | Tên của đối tượng
+name
+VARCHAR(255)
+Tên của đối tượng
+CHƯƠNG 3: CÔNG NGHỆ ÁP DỤNG VÀ MÔ TẢ CHỨC NĂNG
+3.1. Công nghệ và Công cụ sử dụng
+Ngôn ngữ & Framework Backend: C#, ASP.NET MVC.
+Cơ sở dữ liệu: Microsoft SQL Server 2019 (Tương tác qua ADO.NET hoặc Entity Framework).
+Frontend: HTML, CSS, Bootstrap, Razor View Engine (.cshtml).
+Môi trường phát triển: Microsoft Visual Studio 2019.
+3.2. Mô tả các chức năng cốt lõi
+[Hướng dẫn: Trình bày từng chức năng chính theo gạch đầu dòng. Mỗi chức năng CẦN có ảnh chụp màn hình (Screenshot) minh họa đi kèm.]
+Xây dựng Layout & Giao diện: Trang chủ, Menu 2 cấp động, phân loại sản phẩm theo danh mục.
+Chức năng Đăng nhập/Đăng ký & Phân quyền: Xác thực người dùng, giới hạn quyền truy cập của Admin và Khách hàng.
+Chức năng CRUD (Quản trị): Chụp ảnh màn hình các trang Thêm, Xem (Danh sách), Sửa, Xóa dữ liệu sản phẩm, danh mục.
+Giỏ hàng & Thanh toán: Thêm vào giỏ hàng (lưu bằng Session), xem giỏ hàng, tiến hành đặt hàng trực tuyến và lưu vào bảng Hóa đơn.
+Tìm kiếm & Phân trang: Minh họa ô tìm kiếm và hiển thị danh sách sản phẩm theo kết quả.
+3.3. Chức năng nâng cao & Sáng tạo (Nếu có)
+[Mô tả các tính năng nhóm tự mở rộng để lấy điểm cộng: Xử lý Upload file ảnh lên Server, Báo cáo thống kê doanh thu, Lịch sử mua hàng...]
+CHƯƠNG 4: HƯỚNG DẪN CÀI ĐẶT VÀ VẬN HÀNH
+[Viết các bước ngắn gọn để giảng viên có thể mở code và chạy thử dự án của nhóm]
+Cài đặt Microsoft SQL Server 2019 và Visual Studio 2019. 
+Nạp (Restore/Attach) cơ sở dữ liệu hoặc chạy file script SQL để tạo bảng và dữ liệu.
+Mở file .sln của project bằng Visual Studio 2019.
+Mở file Web.config và cấu hình lại chuỗi kết nối (Connection String) khớp với SQL Server của máy.
+Nhấn Build và Run (IIS Express) để khởi chạy ứng dụng trên trình duyệt.
+CHƯƠNG 5: TỔNG KẾT
+5.1. Kết quả đạt được
+[Tóm tắt lại đồ án đã hoàn thiện được bao nhiêu % so với mục tiêu đề ra ban đầu, đáp ứng được các yêu cầu chuẩn đầu ra (CLO) nào của môn học.]
+5.2. Hạn chế và Hướng phát triển
+[Trình bày những điểm chưa hoàn thiện và ý tưởng nâng cấp trong tương lai nếu có thêm thời gian.]
+Quy định format:
+Layout -> Margins: Left (3cm), Top (3cm), Bottom (3cm), Right (2cm)
+Font: Times New Roman
+Font-size: 13
+Paragraph -> Spacing: Before (0 pt), After (0 pt), Line spacing (1.5 lines)
+Đánh mục lục tự động
+Đánh số trang: Top – center
+Từ trang Mục lục đến trang trước trang Chương 1: i, ii, iii, …
+Từ trang Chương 1 đến hết: 1, 2, 3, …

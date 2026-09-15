@@ -1,0 +1,128 @@
+PHÂN CÔNG ĐỒ ÁN NHÓM – 2 TUẦN
+Đề tài: Website quản lý các mặt hàng quần áo
+Nhóm: 4 thành viên | Thời gian: 14 ngày | Có thiết kế giao diện bằng Figma
+1. Mục tiêu
+Hoàn thành trong 2 tuần: thiết kế giao diện Figma, website có các chức năng quản lý cốt lõi, cơ sở dữ liệu, báo cáo Word, PowerPoint và bản demo ổn định. Nhóm ưu tiên chức năng cần thiết, không mở rộng quá nhiều tính năng nâng cao.
+2. Phân công 4 thành viên
+Thành viên | Phụ trách kỹ thuật | Báo cáo / tài liệu | Bàn giao
+Thành viên
+Phụ trách kỹ thuật
+Báo cáo / tài liệu
+Bàn giao
+Người 1 – Database & Backend | Phân tích CSDL; ERD; tạo bảng, PK/FK; kết nối database; backend và xử lý dữ liệu chung. | Viết phần phân tích hệ thống, thiết kế CSDL; cung cấp ERD và mô tả bảng. | Database + ERD + backend nền + nội dung báo cáo phần CSDL.
+Người 1 – Database & Backend
+Phân tích CSDL; ERD; tạo bảng, PK/FK; kết nối database; backend và xử lý dữ liệu chung.
+Viết phần phân tích hệ thống, thiết kế CSDL; cung cấp ERD và mô tả bảng.
+Database + ERD + backend nền + nội dung báo cáo phần CSDL.
+Người 2 – Figma & Frontend | Thiết kế Figma; xây dựng giao diện theo Figma; các màn hình Login, Dashboard, menu và giao diện các trang chính. | Viết mục Thiết kế giao diện bằng Figma; xuất/chụp các màn hình Figma để đưa vào Word và PPT. | File/link Figma + giao diện frontend + ảnh thiết kế.
+Người 2 – Figma & Frontend
+Thiết kế Figma; xây dựng giao diện theo Figma; các màn hình Login, Dashboard, menu và giao diện các trang chính.
+Viết mục Thiết kế giao diện bằng Figma; xuất/chụp các màn hình Figma để đưa vào Word và PPT.
+File/link Figma + giao diện frontend + ảnh thiết kế.
+Người 3 – Khách hàng & Đơn hàng + Word | Quản lý khách hàng; đơn hàng; chi tiết đơn; trạng thái đơn; thống kê cơ bản. | Phụ trách tổng hợp Word: nhận nội dung từ cả nhóm, Heading, mục lục, hình/bảng, số trang, format. | Module khách hàng/đơn hàng + file Word hoàn chỉnh.
+Người 3 – Khách hàng & Đơn hàng + Word
+Quản lý khách hàng; đơn hàng; chi tiết đơn; trạng thái đơn; thống kê cơ bản.
+Phụ trách tổng hợp Word: nhận nội dung từ cả nhóm, Heading, mục lục, hình/bảng, số trang, format.
+Module khách hàng/đơn hàng + file Word hoàn chỉnh.
+Người 4 – Sản phẩm & Kho + PPT/Tích hợp | Danh mục; sản phẩm; thêm/sửa/xóa; size; màu; giá; hình ảnh; tồn kho; tìm kiếm/lọc; hỗ trợ ghép code. | Phụ trách PPT, chọn ảnh minh họa, chuẩn bị demo và kết luận. | Module sản phẩm/kho + PPT + bản tích hợp demo.
+Người 4 – Sản phẩm & Kho + PPT/Tích hợp
+Danh mục; sản phẩm; thêm/sửa/xóa; size; màu; giá; hình ảnh; tồn kho; tìm kiếm/lọc; hỗ trợ ghép code.
+Phụ trách PPT, chọn ảnh minh họa, chuẩn bị demo và kết luận.
+Module sản phẩm/kho + PPT + bản tích hợp demo.
+3. Các màn hình Figma tối thiểu
+Đăng nhập
+Dashboard
+Danh sách sản phẩm
+Thêm/Sửa sản phẩm
+Danh mục sản phẩm
+Quản lý kho/tồn kho
+Khách hàng
+Danh sách đơn hàng
+Chi tiết đơn hàng
+Thống kê
+Quản lý tài khoản/phân quyền
+Lưu ý: Figma cần chốt trong 2 ngày đầu. Không cần quá cầu kỳ; mục tiêu là giao diện rõ ràng và website code ra tương đối giống bản thiết kế.
+4. Tiến độ 14 ngày
+Thời gian | Công việc chính | Người phụ trách | Kết quả cần có
+Thời gian
+Công việc chính
+Người phụ trách
+Kết quả cần có
+Ngày 1 | Chốt chức năng, công nghệ, cấu trúc DB, style giao diện. Bắt đầu Figma. | Cả nhóm; Người 1 DB; Người 2 Figma | Danh sách chức năng + DB nháp + style Figma.
+Ngày 1
+Chốt chức năng, công nghệ, cấu trúc DB, style giao diện. Bắt đầu Figma.
+Cả nhóm; Người 1 DB; Người 2 Figma
+Danh sách chức năng + DB nháp + style Figma.
+Ngày 2 | Hoàn thành Figma các màn hình chính; chốt ERD/database. | Người 1, Người 2; cả nhóm duyệt | Figma và ERD được chốt.
+Ngày 2
+Hoàn thành Figma các màn hình chính; chốt ERD/database.
+Người 1, Người 2; cả nhóm duyệt
+Figma và ERD được chốt.
+Ngày 3–5 | Code song song: backend/DB, frontend, sản phẩm-kho, khách hàng-đơn hàng. | Cả 4 | Các module chính chạy riêng được.
+Ngày 3–5
+Code song song: backend/DB, frontend, sản phẩm-kho, khách hàng-đơn hàng.
+Cả 4
+Các module chính chạy riêng được.
+Ngày 6 | Hoàn thiện CRUD, tìm kiếm/lọc, login/phân quyền và giao diện. | Cả 4 | Phần lớn chức năng cốt lõi hoàn thành.
+Ngày 6
+Hoàn thiện CRUD, tìm kiếm/lọc, login/phân quyền và giao diện.
+Cả 4
+Phần lớn chức năng cốt lõi hoàn thành.
+Ngày 7 | Ghép code lần 1 và kết nối toàn bộ với database. | Cả nhóm | Có bản website chạy end-to-end.
+Ngày 7
+Ghép code lần 1 và kết nối toàn bộ với database.
+Cả nhóm
+Có bản website chạy end-to-end.
+Ngày 8–9 | Sửa lỗi tích hợp, hoàn thiện UI theo Figma, thống kê cơ bản. | Cả nhóm | Website gần hoàn chỉnh.
+Ngày 8–9
+Sửa lỗi tích hợp, hoàn thiện UI theo Figma, thống kê cơ bản.
+Cả nhóm
+Website gần hoàn chỉnh.
+Ngày 10 | Test chức năng và dữ liệu; sửa bug. Chốt không thêm chức năng lớn. | Cả nhóm | Bản demo ổn định.
+Ngày 10
+Test chức năng và dữ liệu; sửa bug. Chốt không thêm chức năng lớn.
+Cả nhóm
+Bản demo ổn định.
+Ngày 11 | Mỗi người hoàn thiện nội dung Word và ảnh phần mình; gửi Người 3. | Cả 4 | Đủ nội dung báo cáo.
+Ngày 11
+Mỗi người hoàn thiện nội dung Word và ảnh phần mình; gửi Người 3.
+Cả 4
+Đủ nội dung báo cáo.
+Ngày 12 | Tổng hợp và format Word; kiểm tra Figma, sơ đồ, hình ảnh, chức năng. | Người 3 + cả nhóm kiểm tra | Word hoàn chỉnh.
+Ngày 12
+Tổng hợp và format Word; kiểm tra Figma, sơ đồ, hình ảnh, chức năng.
+Người 3 + cả nhóm kiểm tra
+Word hoàn chỉnh.
+Ngày 13 | Làm/chốt PPT, chọn màn hình Figma và ảnh website; chia phần thuyết trình. | Người 4 + cả nhóm | PPT hoàn chỉnh + kịch bản demo.
+Ngày 13
+Làm/chốt PPT, chọn màn hình Figma và ảnh website; chia phần thuyết trình.
+Người 4 + cả nhóm
+PPT hoàn chỉnh + kịch bản demo.
+Ngày 14 | Chạy thử thuyết trình, demo, sửa lỗi cuối và đóng gói file nộp. | Cả nhóm | Website + Word + PPT + Figma sẵn sàng nộp.
+Ngày 14
+Chạy thử thuyết trình, demo, sửa lỗi cuối và đóng gói file nộp.
+Cả nhóm
+Website + Word + PPT + Figma sẵn sàng nộp.
+5. Nội dung Word nên có
+Giới thiệu đề tài và mục tiêu hệ thống.
+Khảo sát/phân tích yêu cầu và các chức năng.
+Use Case hoặc sơ đồ nghiệp vụ nếu môn học yêu cầu.
+Thiết kế cơ sở dữ liệu: ERD, các bảng và quan hệ.
+Thiết kế giao diện hệ thống bằng Figma: ảnh các màn hình và mô tả.
+Xây dựng các chức năng: đăng nhập, sản phẩm, kho, khách hàng, đơn hàng, thống kê.
+Kết quả thực hiện: ảnh website thực tế và đối chiếu với thiết kế.
+Kiểm thử, hạn chế và hướng phát triển.
+Phân công thành viên và kết luận.
+6. Phân chia thuyết trình
+Người 1: Giới thiệu đề tài + phân tích hệ thống + ERD/database.
+Người 2: Trình bày thiết kế Figma + giao diện website.
+Người 3: Khách hàng + đơn hàng + thống kê.
+Người 4: Sản phẩm + kho + demo tổng thể + kết luận.
+7. Quy tắc để kịp deadline
+Ngày 2 phải chốt Figma và database để tránh sửa thiết kế liên tục khi đang code.
+Mỗi ngày báo cáo trong group: Đã làm gì – Đang làm gì – Vướng gì.
+Không để một người tự viết toàn bộ Word; mỗi người phải gửi nội dung phần mình.
+Ngày 7 bắt buộc ghép code lần đầu, không chờ sát ngày nộp.
+Sau ngày 10 chỉ ưu tiên sửa bug, báo cáo, PPT và demo.
+Code, database, Figma và báo cáo phải thống nhất tên chức năng và nội dung.
+MỤC TIÊU CUỐI: FIGMA CHỐT SỚM → WEBSITE CHẠY ỔN → WORD ĐỦ NỘI DUNG → PPT GỌN → CẢ 4 NGƯỜI ĐỀU NẮM PHẦN MÌNH.

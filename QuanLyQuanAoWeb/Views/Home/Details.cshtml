@@ -1,0 +1,161 @@
+@model QuanLyQuanAoWeb.Models.Product
+@{
+    ViewData["Title"] = Model.ProductName;
+    var relatedProducts = ViewBag.RelatedProducts as List<QuanLyQuanAoWeb.Models.Product> ?? new();
+    var totalStock = Model.Variants.Sum(v => v.StockQuantity);
+}
+
+<div class="container py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-route-categoryId="@Model.CategoryId" class="text-decoration-none">@Model.Category?.CategoryName</a></li>
+            <li class="breadcrumb-item active text-truncate" style="max-width: 300px;">@Model.ProductName</li>
+        </ol>
+    </nav>
+
+    <div class="row g-5">
+        <!-- Ảnh Sản Phẩm -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden position-relative">
+                @if (Model.DiscountPercent > 0)
+                {
+                    <span class="badge bg-danger position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill fs-6">
+                        GIẢM @Model.DiscountPercent%
+                    </span>
+                }
+                <img src="@(string.IsNullOrEmpty(Model.MainImage) ? "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700" : Model.MainImage)" 
+                     class="img-fluid w-100" 
+                     alt="@Model.ProductName" 
+                     style="max-height: 520px; object-fit: cover;">
+            </div>
+        </div>
+
+        <!-- Thông Tin Chi Tiết Sản Phẩm -->
+        <div class="col-lg-6">
+            <div class="ps-lg-3">
+                <div class="text-muted small mb-1">
+                    <span class="badge bg-light text-dark border me-2">Mã: @(Model.ProductCode ?? "N/A")</span>
+                    <span class="badge bg-light text-dark border">Danh mục: @Model.Category?.CategoryName</span>
+                </div>
+
+                <h2 class="fw-bold text-dark mt-2 mb-3">@Model.ProductName</h2>
+
+                <!-- Giá -->
+                <div class="p-3 bg-light rounded-3 mb-4 d-flex align-items-baseline gap-3">
+                    <span class="fs-2 fw-bold text-danger">@Model.FinalPrice.ToString("N0") đ</span>
+                    @if (Model.DiscountPercent > 0)
+                    {
+                        <span class="text-decoration-line-through text-muted fs-5">@Model.Price.ToString("N0") đ</span>
+                        <span class="badge bg-danger">Tiết kiệm @((Model.Price - Model.FinalPrice).ToString("N0")) đ</span>
+                    }
+                </div>
+
+                <!-- Mô tả -->
+                <div class="mb-4">
+                    <h6 class="fw-bold text-dark mb-2">Mô tả sản phẩm:</h6>
+                    <p class="text-secondary leading-relaxed">
+                        @Model.Description
+                    </p>
+                </div>
+
+                <!-- Lựa chọn Kích cỡ & Màu sắc (Nghiệp vụ Quần Áo - Người 4 & Người 2) -->
+                <div class="card border border-light-subtle rounded-3 p-3 mb-4 bg-white shadow-sm">
+                    <h6 class="fw-bold text-dark mb-3"><i class="bi bi-palette-fill text-primary me-2"></i>Biến Thể Size & Màu Sắc Hiện Có:</h6>
+
+                    @if (Model.Variants.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered align-middle mb-0 text-center">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Size (Kích Cỡ)</th>
+                                        <th>Màu Sắc</th>
+                                        <th>SKU Quản Lý</th>
+                                        <th>Tồn Kho</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var variant in Model.Variants)
+                                    {
+                                        <tr>
+                                            <td><span class="badge bg-dark px-3 py-1">@variant.Size?.SizeName</span></td>
+                                            <td>
+                                                <span class="badge text-white" style="background-color: @(variant.Color?.ColorHex ?? "#333");">
+                                                    @variant.Color?.ColorName
+                                                </span>
+                                            </td>
+                                            <td><small class="text-muted">@variant.SKU</small></td>
+                                            <td>
+                                                @if (variant.StockQuantity > 0)
+                                                {
+                                                    <span class="text-success fw-bold">@variant.StockQuantity cái</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-danger fw-bold">Hết hàng</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted small mb-0">Chưa thiết lập biến thể tồn kho cho sản phẩm này.</p>
+                    }
+                </div>
+
+                <!-- Thao tác Mua hàng / Giỏ hàng -->
+                <div class="d-flex gap-3 mb-4">
+                    <div class="w-25">
+                        <input type="number" class="form-control form-control-lg text-center fw-bold" value="1" min="1" max="@(totalStock > 0 ? totalStock : 1)">
+                    </div>
+                    <div class="w-70 flex-grow-1">
+                        <button class="btn btn-dark btn-lg w-100 fw-bold shadow-sm" @(totalStock == 0 ? "disabled" : "")>
+                            <i class="bi bi-cart-plus me-2"></i>Thêm Vào Giỏ Hàng
+                        </button>
+                    </div>
+                </div>
+
+                <div class="border-top pt-3 text-muted small">
+                    <div class="d-flex gap-4">
+                        <span><i class="bi bi-shield-check text-success me-1"></i>Chính hãng 100%</span>
+                        <span><i class="bi bi-arrow-repeat text-primary me-1"></i>Đổi trả 7 ngày</span>
+                        <span><i class="bi bi-truck text-warning me-1"></i>Giao hàng toàn quốc</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sản Phẩm Liên Quan -->
+    @if (relatedProducts.Any())
+    {
+        <div class="mt-5 pt-5 border-top">
+            <h4 class="fw-bold mb-4"><i class="bi bi-stars text-warning me-2"></i>Sản Phẩm Cùng Danh Mục</h4>
+            <div class="row g-4">
+                @foreach (var item in relatedProducts)
+                {
+                    <div class="col-md-3">
+                        <div class="card h-100 border-0 shadow-sm product-card">
+                            <a asp-action="Details" asp-route-id="@item.ProductId">
+                                <img src="@(string.IsNullOrEmpty(item.MainImage) ? "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" : item.MainImage)" 
+                                     class="card-img-top" alt="@item.ProductName" style="height: 200px; object-fit: cover;">
+                            </a>
+                            <div class="card-body p-3">
+                                <h6 class="fw-bold text-truncate mb-2">
+                                    <a asp-action="Details" asp-route-id="@item.ProductId" class="text-dark text-decoration-none">@item.ProductName</a>
+                                </h6>
+                                <div class="text-danger fw-bold">@item.FinalPrice.ToString("N0") đ</div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,83 @@
+@model QuanLyQuanAoWeb.Models.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập hệ thống";
+}
+
+<div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-dark text-white text-center py-3">
+                <h4 class="mb-0 fw-bold"><i class="bi bi-person-circle me-2"></i>ĐĂNG NHẬP</h4>
+                <small class="text-light">Website Quản Lý & Kinh Doanh Quần Áo</small>
+            </div>
+            <div class="card-body p-4">
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>@TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (!ViewData.ModelState.IsValid && ViewData.ModelState[string.Empty]?.Errors.Count > 0)
+                {
+                    <div class="alert alert-danger">
+                        @foreach (var error in ViewData.ModelState[string.Empty]!.Errors)
+                        {
+                            <div><i class="bi bi-exclamation-triangle-fill me-2"></i>@error.ErrorMessage</div>
+                        }
+                    </div>
+                }
+
+                <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="mb-3">
+                        <label asp-for="Username" class="form-label fw-semibold">Tên đăng nhập</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-person"></i></span>
+                            <input asp-for="Username" class="form-control" placeholder="Nhập tên đăng nhập (ví dụ: admin, khachhang)" />
+                        </div>
+                        <span asp-validation-for="Username" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label fw-semibold">Mật khẩu</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input asp-for="Password" class="form-control" placeholder="Nhập mật khẩu (ví dụ: 123456)" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">Ghi nhớ đăng nhập</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+                    </button>
+                </form>
+
+                <div class="mt-4 pt-3 border-top text-center">
+                    <p class="mb-1 text-muted">Chưa có tài khoản?</p>
+                    <a asp-action="Register" class="text-decoration-none fw-semibold">Tạo tài khoản khách hàng mới</a>
+                </div>
+
+                <div class="alert alert-light border mt-4 mb-0 small">
+                    <strong><i class="bi bi-info-circle me-1"></i>Tài khoản dùng thử mẫu:</strong>
+                    <ul class="mb-0 ps-3">
+                        <li><strong>Admin:</strong> <code>admin</code> / <code>123456</code></li>
+                        <li><strong>Nhân viên kho:</strong> <code>nhanvien</code> / <code>123456</code></li>
+                        <li><strong>Khách hàng:</strong> <code>khachhang</code> / <code>123456</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
