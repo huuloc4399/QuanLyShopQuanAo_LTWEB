@@ -1,104 +1,200 @@
-# HƯỚNG DẪN DÀNH CHO CÁC THÀNH VIÊN GHÉP CODE (NHÓM 4)
-*Dự án: Website Quản lý & Kinh doanh Quần áo (ASP.NET Core MVC .NET 8)*  
-*Biên soạn: Người 1 (Database & Backend Nền)*
+# CẨM NANG HƯỚNG DẪN GIT & GHÉP CODE DỰ ÁN NHÓM (HUIT)
+*Đề tài: Website Quản lý & Kinh doanh Mặt hàng Quần áo (ASP.NET Core MVC .NET 8)*  
+*Biên soạn: Người 1 (Database & Backend Nền tảng)*
 
 ---
 
-Chào các bạn, phần code nền tảng (Database SQL Server, Entity Models, kết nối DbContext, xác thực Đăng nhập/Đăng ký/Phân quyền, Giỏ hàng và các Layout khung) đã được hoàn thiện và chạy ổn định.
-
-Giao diện hiện tại trong code là **giao diện mẫu (Template)** để các bạn hình dung luồng dữ liệu. Dưới đây là hướng dẫn cụ thể để mỗi bạn dễ dàng thay thế giao diện Figma hoặc cắm tính năng của mình vào mà **không sợ làm hỏng code của nhau**.
+Tài liệu này hướng dẫn chi tiết từng bước cho **cả 4 thành viên** từ việc Clone code từ GitHub, tạo nhánh riêng, commit/push code, tạo Pull Request ghép code, đến cách thay thế giao diện Figma và cắm tính năng riêng.
 
 ---
 
-## 1. Dành cho Người 2 (Figma & Frontend)
-
-Bạn không cần biết nhiều về C# Backend. Giao diện của bạn làm việc chủ yếu ở 2 phần:
-
-### A. Nếu muốn đổi màu sắc, font chữ, style giao diện theo Figma:
-- Bạn chỉ cần vào thư mục: `QuanLyQuanAoWeb/wwwroot/css/`
-- Mở file `site.css` hoặc tạo file mới `custom.css` (sau đó link vào `_Layout.cshtml`).
-- Viết CSS đè lên theo đúng màu sắc và style của bản Figma.
-
-### B. Nếu muốn thay đổi bố cục Header, Footer, Navbar:
-- Mở file `Views/Shared/_Layout.cshtml` (dành cho khách hàng) hoặc `Areas/Admin/Views/Shared/_AdminLayout.cshtml` (dành cho trang quản trị).
-- Bạn có thể thoải mái sửa HTML của Navbar, Header, Banner, Footer theo Figma.
-- **LƯU Ý DUY NHẤT:** Giữ lại dòng `@RenderBody()` ở giữa trang. Dòng này là nơi nội dung các trang con được nhúng vào.
-
-### C. Nếu muốn thay đổi giao diện Trang chủ hoặc Chi tiết sản phẩm:
-- Mở file `Views/Home/Index.cshtml` (Trang chủ) hoặc `Views/Home/Details.cshtml` (Chi tiết SP).
-- Bạn có thể thay đổi toàn bộ mã HTML thẻ `<div>`, `class`, `card` theo Figma.
-- Chỉ cần giữ lại các vị trí in dữ liệu Razor:
-  - `@Model.ProductName` (In tên sản phẩm)
-  - `@Model.FinalPrice.ToString("N0") đ` (In giá tiền)
-  - Vòng lặp: `@foreach (var item in Model.AllProducts) { ... }`
+## MỤC LỤC
+1. [Bước 1: Clone dự án từ GitHub về máy cá nhân](#bước-1-clone-dự-án-từ-github-về-máy-cá-nhân)
+2. [Bước 2: Nạp CSDL SQL Server trên máy bạn](#bước-2-nạp-csdl-sql-server-trên-máy-bạn)
+3. [Bước 3: Tạo nhánh riêng (Branch) để làm việc](#bước-3-tạo-nhánh-riêng-branch-để-làm-việc)
+4. [Bước 4: Quy trình Code, Commit và Push lên GitHub](#bước-4-quy-trình-code-commit-và-push-lên-github)
+5. [Bước 5: Tạo Pull Request (PR) để ghép code vào nhóm](#bước-5-tạo-pull-request-pr-để-ghép-code-vào-nhóm)
+6. [Bước 6: Kéo code mới nhất của cả nhóm về máy](#bước-6-kéo-code-mới-nhất-của-cả-nhóm-về-máy)
+7. [Hướng dẫn cụ thể cho từng thành viên thay code](#hướng-dẫn-cụ-thể-cho-từng-thành-viên-thay-code)
+8. [Các lỗi thường gặp và cách khắc phục nhanh](#các-lỗi-thường-gặp-và-cách-khắc-phục-nhanh)
 
 ---
 
-## 2. Dành cho Người 3 (Khách hàng & Đơn hàng)
+## Bước 1: Clone dự án từ GitHub về máy cá nhân
 
-Bạn phụ trách 2 module: **Quản lý Đơn hàng** và **Quản lý Khách hàng**.
+### Cách 1: Dùng dòng lệnh Git (Git Bash / PowerShell / Terminal)
+1. Mở thư mục muốn lưu bài (ví dụ `D:\DoAnWeb`), nhấn chuột phải chọn **Open Git Bash here** hoặc **Open in Terminal**.
+2. Gõ lệnh clone:
+   ```bash
+   git clone https://github.com/<tai-khoan-nguoi-1>/LT_Web_QuanLyQuanAo.git
+   cd LT_Web_QuanLyQuanAo
+   ```
+3. Chuyển sang nhánh tập kết chung `develop`:
+   ```bash
+   git checkout develop
+   ```
 
-### A. Bạn tạo các file mới hoàn toàn (Không đụng vào file cũ):
-1. **Controllers:**
-   - Tạo `Controllers/OrdersController.cs` (Xem danh sách đơn, chi tiết đơn, cập nhật trạng thái đơn).
-   - Tạo `Controllers/CustomersController.cs` (Xem danh sách khách hàng, khóa/mở tài khoản).
-2. **Views:**
-   - Tạo thư mục `Views/Orders/` $\rightarrow$ Thêm `Index.cshtml` (Danh sách đơn), `Details.cshtml` (Chi tiết đơn).
-   - Tạo thư mục `Views/Customers/` $\rightarrow$ Thêm `Index.cshtml`.
+### Cách 2: Dùng Visual Studio (2019 / 2022)
+1. Mở Visual Studio $\rightarrow$ Chọn **Clone a repository** ở màn hình khởi động.
+2. Dán đường link GitHub của repo vào ô **Repository location**.
+3. Chọn thư mục lưu trên máy $\rightarrow$ Nhấn nút **Clone**.
+4. Mở cửa sổ **Git Changes** (hoặc góc dưới cùng bên phải), chuyển nhánh từ `main` sang **`develop`**.
 
-### B. Cách bạn lấy dữ liệu từ Backend có sẵn của Người 1:
-Trong Controller của bạn, bạn chỉ cần gọi `ApplicationDbContext` đã được tạo sẵn:
-```csharp
-public class OrdersController : Controller
-{
-    private readonly ApplicationDbContext _context;
+---
 
-    public OrdersController(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+## Bước 2: Nạp CSDL SQL Server trên máy bạn
 
-    // Danh sách đơn hàng
-    public async Task<IActionResult> Index()
-    {
-        var orders = await _context.Orders
-            .Include(o => o.User)
-            .OrderByDescending(o => o.OrderDate)
-            .ToListAsync();
-        return View(orders);
-    }
-}
+Tất cả các máy đều phải nạp cùng một cơ sở dữ liệu để web chạy được dữ liệu mẫu:
+1. Mở phần mềm **SQL Server Management Studio (SSMS)**.
+2. Đăng nhập vào SQL Server trên máy của bạn (hoặc `(localdb)\mssqllocaldb`).
+3. Nhấn **File -> Open -> File...** $\rightarrow$ Chọn file `QuanLyQuanAoDb.sql` trong thư mục vừa tải về.
+4. Nhấn nút **Execute (F5)** để chạy.
+   - Kết quả hiện thông báo xanh: `ĐÃ CẬP NHẬT THÀNH CÔNG DATABASE [WebQuanLyQuanAoDb]!` là thành công.
+5. Mở file `appsettings.json` trong project `QuanLyQuanAoWeb`, kiểm tra dòng `DefaultConnection`:
+   - Mặc định là: `"Server=(localdb)\\mssqllocaldb;Database=WebQuanLyQuanAoDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true"`
+   - Nếu máy bạn dùng SQL Express riêng (VD: `DESKTOP-ABC\SQLEXPRESS`), hãy đổi lại tên Server cho khớp với máy bạn.
+
+---
+
+## Bước 3: Tạo nhánh riêng (Branch) để làm việc
+
+**QUY TẮC SỐNG CÒN:** Tuyệt đối **KHÔNG** code trực tiếp trên nhánh `main` hoặc `develop`. Mỗi người phải tạo một nhánh riêng mang tên mình/tính năng của mình!
+
+### Quy ước đặt tên nhánh cho 4 thành viên:
+- **Người 2 (Figma & Frontend):** `feature/frontend-ui`
+- **Người 3 (Khách hàng & Đơn hàng):** `feature/orders-customers`
+- **Người 4 (Sản phẩm & Kho hàng):** `feature/products-inventory`
+
+### Lệnh tạo nhánh (Terminal):
+```bash
+# Đảm bảo đang ở develop và có code mới nhất
+git checkout develop
+git pull origin develop
+
+# Tạo và nhảy sang nhánh mới của bạn
+git checkout -b feature/orders-customers
 ```
 
+*(Trên Visual Studio GUI: Nhấn vào tên nhánh góc dưới bên phải $\rightarrow$ Chọn **New Branch...** $\rightarrow$ Điền tên nhánh $\rightarrow$ Chọn Base từ `develop` $\rightarrow$ Nhấn **Create**).*
+
 ---
 
-## 3. Dành cho Người 4 (Sản phẩm & Kho hàng)
+## Bước 4: Quy trình Code, Commit và Push lên GitHub
 
-Bạn phụ trách: **Danh mục**, **Sản phẩm (CRUD)**, **Biến thể Size/Màu**, và **Tồn kho**.
+Sau khi bạn code xong hoặc hết một buổi làm việc:
 
-### A. Bạn tạo các Controller và View riêng trong Quản trị:
-1. **Controllers:**
-   - Tạo `Areas/Admin/Controllers/ProductManageController.cs` (Thêm, sửa, xóa sản phẩm).
-   - Tạo `Areas/Admin/Controllers/CategoryManageController.cs` (Quản lý danh mục).
-   - Tạo `Areas/Admin/Controllers/InventoryController.cs` (Cập nhật tồn kho theo biến thể).
-2. **Views:**
-   - Tạo thư mục `Areas/Admin/Views/ProductManage/`: chứa `Index.cshtml`, `Create.cshtml`, `Edit.cshtml`.
-   - Tạo thư mục `Areas/Admin/Views/CategoryManage/`: chứa `Index.cshtml`, `Create.cshtml`.
-   - Tạo thư mục `Areas/Admin/Views/Inventory/`: chứa `Index.cshtml` (Bảng chỉnh sửa số lượng tồn kho).
+### Bước 4.1: Kiểm tra build trước khi gửi code
+- Trên Visual Studio: Nhấn `Ctrl + Shift + B` (Build Solution).
+- Hoặc trên Terminal gõ: `dotnet build`
+- **BẮT BUỘC** phải thấy: `Build succeeded. 0 Error(s)` thì mới được commit! (Nếu có lỗi đỏ thì sửa hết trước khi commit, không đẩy code lỗi làm sập app của cả nhóm).
 
-### B. Tận dụng giao diện Admin có sẵn:
-Ở đầu các file View của bạn, chỉ cần khai báo:
-```html
-@{
-    Layout = "_AdminLayout";
-    ViewData["Title"] = "Quản lý sản phẩm";
-}
+### Bước 4.2: Commit & Push code lên GitHub
+
+#### Bằng Terminal:
+```bash
+# 1. Xem những file bạn vừa thay đổi hoặc thêm mới
+git status
+
+# 2. Thêm toàn bộ file thay đổi vào hàng đợi
+git add .
+
+# 3. Đóng gói commit và ghi chú rõ ràng đã làm gì
+git commit -m "feat(order): Them giao dien danh sach don hang va chi tiet don"
+
+# 4. Đẩy nhánh của bạn lên GitHub
+git push -u origin feature/orders-customers
 ```
-Trang của bạn sẽ tự động có đầy đủ Sidebar Admin và Topbar đẹp mắt theo chuẩn của nhóm!
+*(Từ lần thứ 2 trở đi, chỉ cần gõ `git push`).*
+
+#### Bằng Visual Studio GUI:
+1. Mở tab **Git Changes** bên phải màn hình.
+2. Nhập ghi chú (Commit message) vào ô trống (VD: `Hoan thanh CRUD don hang`).
+3. Nhấn vào nút mũi tên cạnh nút Commit $\rightarrow$ Chọn **Commit All and Push**.
 
 ---
 
-## 4. Tóm tắt 3 Nguyên Tắc Vàng Khi Làm Nhóm
-1. **Không sửa trực tiếp file của người khác** (trừ khi có trao đổi trước).
-2. **Mỗi tính năng tạo file Controller & View mới** theo tên module của mình.
-3. **Trước khi commit code lên Git:** Nhấn `Ctrl + Shift + B` (hoặc chạy lệnh `dotnet build`) trên máy của mình. Nếu thấy báo `0 Error` thì mới được commit và push lên nhánh `feature/...` của mình.
+## Bước 5: Tạo Pull Request (PR) để ghép code vào nhóm
+
+Khi tính năng của bạn đã hoàn thành và muốn ghép vào sản phẩm chung:
+
+1. Mở trình duyệt, truy cập vào trang GitHub của dự án.
+2. Bạn sẽ thấy một thanh màu vàng hiện lên kèm nút **Compare & pull request** $\rightarrow$ Nhấn vào đó.
+3. **Cực kỳ quan trọng:**
+   - **Base branch (nhánh đích):** Chọn **`develop`** (Không chọn `main`).
+   - **Compare branch (nhánh của bạn):** Chọn nhánh của bạn (ví dụ `feature/orders-customers`).
+4. Viết mô tả ngắn gọn: Các trang/chức năng vừa hoàn thành $\rightarrow$ Nhấn **Create pull request**.
+5. Nhắn tin vào nhóm Zalo để **Người 1 (hoặc trưởng nhóm)** vào kiểm tra.
+6. Trưởng nhóm duyệt code thấy ổn thì nhấn nút **Merge pull request** $\rightarrow$ **Confirm merge**.
+   *(Lúc này code của bạn đã chính thức nằm trong nhánh `develop` của cả nhóm).*
+
+---
+
+## Bước 6: Kéo code mới nhất của cả nhóm về máy
+
+Mỗi khi có bạn khác vừa ghép xong một tính năng mới vào `develop`, bạn muốn lấy code mới đó về máy mình:
+
+```bash
+# 1. Chuyển về nhánh develop
+git checkout develop
+
+# 2. Kéo toàn bộ code mới nhất về
+git pull origin develop
+
+# 3. Cập nhật code mới đó vào nhánh tính năng bạn đang làm
+git checkout feature/orders-customers
+git merge develop
+```
+*(Lúc này nhánh của bạn vừa giữ nguyên phần code bạn đang làm, vừa có thêm các màn hình/tính năng mới mà bạn khác vừa viết).*
+
+---
+
+## Hướng dẫn cụ thể cho từng thành viên thay code
+
+### 1. Dành cho Người 2 (Figma & Frontend)
+- **Đổi màu, font, CSS theo Figma:** Chỉ cần sửa `wwwroot/css/site.css` hoặc tạo `wwwroot/css/custom.css`.
+- **Thay đổi khung Header/Footer:** Mở `Views/Shared/_Layout.cshtml` (khách) và `_AdminLayout.cshtml` (quản trị). Xóa hoặc thay HTML theo Figma, **chỉ cần giữ nguyên thẻ `@RenderBody()`**.
+- **Thay giao diện trang chủ/chi tiết:** Mở `Views/Home/Index.cshtml` và `Details.cshtml`. Thay đổi thẻ `div`, `class`, giữ lại các biểu thức in dữ liệu Razor `@product.ProductName`, `@product.Price`, `@foreach(...)`.
+
+### 2. Dành cho Người 3 (Khách hàng & Đơn hàng)
+- **Không sửa đè file của bạn khác.** Tạo mới:
+  - `Controllers/OrdersController.cs` và `Controllers/CustomersController.cs`
+  - `Views/Orders/Index.cshtml`, `Views/Orders/Details.cshtml`
+  - `Views/Customers/Index.cshtml`
+- Gọi dữ liệu từ `_context.Orders` và `_context.Users` có sẵn trong `ApplicationDbContext`.
+
+### 3. Dành cho Người 4 (Sản phẩm & Kho hàng)
+- Tạo mới các file trong khu vực Quản trị Admin:
+  - `Areas/Admin/Controllers/ProductManageController.cs`
+  - `Areas/Admin/Controllers/CategoryManageController.cs`
+  - `Areas/Admin/Controllers/InventoryController.cs`
+  - Các Views tương ứng trong `Areas/Admin/Views/...`
+- Đầu mỗi View chỉ cần đặt:
+  ```html
+  @{
+      Layout = "_AdminLayout";
+      ViewData["Title"] = "Quản lý sản phẩm";
+  }
+  ```
+  Trang của bạn sẽ tự động có sẵn Sidebar Admin cực đẹp đã thiết kế theo chuẩn Figma!
+
+---
+
+## Các lỗi thường gặp và cách khắc phục nhanh
+
+### 1. Lỗi xung đột code (Merge Conflict)
+- **Nguyên nhân:** Hai bạn cùng sửa vào cùng một dòng code trong cùng một file (VD: cùng sửa `_Layout.cshtml`).
+- **Cách xử lý:** Mở file bị conflict trên Visual Studio hoặc VS Code. Bạn sẽ thấy các dấu `<<<<<<< HEAD` và `>>>>>>>`. Thảo luận với bạn kia xem giữ lại đoạn code nào, xóa các dấu ngăn cách đi, sau đó lưu file và commit lại.
+
+### 2. Lỗi không kết nối được Database (Cannot open database / Login failed)
+- **Cách xử lý:**
+  1. Kiểm tra service SQL Server trên máy bạn đã bật chưa.
+  2. Mở file `QuanLyQuanAoDb.sql` trên SSMS và chạy lại `F5` để đảm bảo DB `WebQuanLyQuanAoDb` đã tồn tại.
+  3. Kiểm tra tên Server trong `appsettings.json` đã đúng với tên máy mình chưa.
+
+### 3. Lỗi không Push được lên GitHub (Permission denied / 403)
+- **Cách xử lý:**
+  - Nhắc Người 1 (chủ repo) vào mục **Settings -> Collaborators** trên GitHub và gửi lời mời (Invite) vào email/tài khoản GitHub của bạn.
+  - Bạn phải mở email và nhấn nút **Accept Invitation** thì mới có quyền push code lên repo.
+
+---
+*Chúc cả nhóm hoàn thành xuất sắc đồ án môn Lập trình Web!*
