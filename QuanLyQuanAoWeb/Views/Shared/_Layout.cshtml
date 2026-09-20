@@ -79,6 +79,11 @@
                         </div>
                     </form>
 
+                    <!-- Cart Button -->
+                    <a class="btn btn-outline-dark btn-sm me-3 position-relative px-3 fw-semibold" asp-area="" asp-controller="Cart" asp-action="Index">
+                        <i class="bi bi-cart3 me-1"></i>Giỏ Hàng
+                    </a>
+
                     <!-- User Account / Cart -->
                     <ul class="navbar-nav align-items-center">
                         @if (User.Identity?.IsAuthenticated == true)

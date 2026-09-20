@@ -87,6 +87,8 @@ namespace QuanLyQuanAoWeb.Controllers
                     .ThenInclude(v => v.Size)
                 .Include(p => p.Variants)
                     .ThenInclude(v => v.Color)
+                .Include(p => p.Reviews)
+                    .ThenInclude(r => r.User)
                 .FirstOrDefaultAsync(p => p.ProductId == id && p.IsActive);
 
             if (product == null)

@@ -11,14 +11,21 @@ namespace QuanLyQuanAoWeb.Data
         }
 
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
+        public virtual DbSet<RolePermission> RolePermissions { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<CustomerAddress> CustomerAddresses { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<ProductVariant> ProductVariants { get; set; }
+        public virtual DbSet<Coupon> Coupons { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<CartItem> CartItems { get; set; }
+        public virtual DbSet<ProductReview> ProductReviews { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<ImportReceipt> ImportReceipts { get; set; }
         public virtual DbSet<ImportReceiptDetail> ImportReceiptDetails { get; set; }
@@ -36,6 +43,14 @@ namespace QuanLyQuanAoWeb.Data
                 .HasIndex(r => r.RoleName)
                 .IsUnique();
 
+            modelBuilder.Entity<Permission>()
+                .HasIndex(p => p.PermissionCode)
+                .IsUnique();
+
+            modelBuilder.Entity<RolePermission>()
+                .HasIndex(rp => new { rp.RoleId, rp.PermissionId })
+                .IsUnique();
+
             modelBuilder.Entity<Size>()
                 .HasIndex(s => s.SizeName)
                 .IsUnique();
@@ -44,12 +59,20 @@ namespace QuanLyQuanAoWeb.Data
                 .HasIndex(c => c.ColorName)
                 .IsUnique();
 
+            modelBuilder.Entity<Coupon>()
+                .HasIndex(cp => cp.CouponCode)
+                .IsUnique();
+
             modelBuilder.Entity<ProductVariant>()
                 .HasIndex(pv => new { pv.ProductId, pv.SizeId, pv.ColorId })
                 .IsUnique();
 
             modelBuilder.Entity<ProductVariant>()
                 .HasIndex(pv => pv.SKU)
+                .IsUnique();
+
+            modelBuilder.Entity<CartItem>()
+                .HasIndex(ci => new { ci.CartId, ci.VariantId })
                 .IsUnique();
 
             // Computed columns
@@ -80,10 +103,22 @@ namespace QuanLyQuanAoWeb.Data
                 .HasForeignKey(o => o.UserId)
                 .OnDelete(DeleteBehavior.SetNull);
 
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Coupon)
+                .WithMany(cp => cp.Orders)
+                .HasForeignKey(o => o.CouponId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             modelBuilder.Entity<OrderDetail>()
                 .HasOne(od => od.Order)
                 .WithMany(o => o.OrderDetails)
                 .HasForeignKey(od => od.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CartItem>()
+                .HasOne(ci => ci.Cart)
+                .WithMany(c => c.CartItems)
+                .HasForeignKey(ci => ci.CartId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ImportReceiptDetail>()

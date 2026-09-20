@@ -11,6 +11,8 @@ namespace QuanLyQuanAoWeb.Models
 
         public int? UserId { get; set; }
 
+        public int? CouponId { get; set; }
+
         public DateTime OrderDate { get; set; } = DateTime.Now;
 
         [Required]
@@ -31,6 +33,9 @@ namespace QuanLyQuanAoWeb.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalAmount { get; set; } = 0;
 
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal DiscountAmount { get; set; } = 0;
+
         [Required]
         [StringLength(50)]
         public string PaymentMethod { get; set; } = "COD";
@@ -45,6 +50,9 @@ namespace QuanLyQuanAoWeb.Models
 
         [ForeignKey("UserId")]
         public virtual User? User { get; set; }
+
+        [ForeignKey("CouponId")]
+        public virtual Coupon? Coupon { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }

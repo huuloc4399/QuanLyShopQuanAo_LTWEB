@@ -3,20 +3,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace QuanLyQuanAoWeb.Models
 {
-    [Table("Roles")]
-    public class Role
+    [Table("Permissions")]
+    public class Permission
     {
         [Key]
-        public int RoleId { get; set; }
+        public int PermissionId { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string PermissionName { get; set; } = string.Empty;
 
         [Required]
         [StringLength(50)]
-        public string RoleName { get; set; } = string.Empty;
+        public string PermissionCode { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(50)]
+        public string Module { get; set; } = string.Empty;
 
         [StringLength(255)]
         public string? Description { get; set; }
 
-        public virtual ICollection<User> Users { get; set; } = new List<User>();
         public virtual ICollection<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
     }
 }

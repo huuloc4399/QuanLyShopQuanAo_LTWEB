@@ -44,5 +44,8 @@ namespace QuanLyQuanAoWeb.Models
         public virtual Role? Role { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        public virtual ICollection<CustomerAddress> Addresses { get; set; } = new List<CustomerAddress>();
+        public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
+        public virtual ICollection<ProductReview> Reviews { get; set; } = new List<ProductReview>();
     }
 }
