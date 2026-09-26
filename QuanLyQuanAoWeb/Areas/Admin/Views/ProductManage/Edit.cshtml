@@ -1,0 +1,89 @@
+﻿@model QuanLyQuanAoWeb.Models.Product
+
+@{
+    ViewData["Title"] = "Chỉnh sửa sản phẩm";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Chỉnh sửa sản phẩm</h1>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <input type="hidden" asp-for="ProductId" />
+                <input type="hidden" asp-for="MainImage" /> <!-- Giữ lại đường dẫn ảnh cũ -->
+                <input type="hidden" asp-for="CreatedAt" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="ProductName" class="form-label font-weight-bold">Tên sản phẩm</label>
+                    <input asp-for="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ProductCode" class="form-label font-weight-bold">Mã sản phẩm</label>
+                    <input asp-for="ProductCode" class="form-control" />
+                    <span asp-validation-for="ProductCode" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CategoryId" class="form-label font-weight-bold">Danh mục</label>
+                    <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryId"></select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="OriginalPrice" class="form-label font-weight-bold">Giá gốc</label>
+                    <input asp-for="OriginalPrice" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="OriginalPrice" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label font-weight-bold">Giá bán</label>
+                    <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DiscountPercent" class="form-label font-weight-bold">Phần trăm giảm giá (%)</label>
+                    <input asp-for="DiscountPercent" class="form-control" type="number" />
+                    <span asp-validation-for="DiscountPercent" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label font-weight-bold">Hình ảnh hiện tại</label>
+                    <div>
+                        @if (!string.IsNullOrEmpty(Model.MainImage))
+                        {
+                            <img src="@Model.MainImage" alt="Product Image" style="max-height: 100px;" class="img-thumbnail mb-2" />
+                        }
+                        else
+                        {
+                            <p class="text-muted">Chưa có hình ảnh</p>
+                        }
+                    </div>
+                    <label class="form-label font-weight-bold">Đổi hình ảnh mới (nếu muốn thay đổi)</label>
+                    <input type="file" name="imageFile" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label font-weight-bold">Mô tả</label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" asp-for="IsFeatured" />
+                    <label class="form-check-label" asp-for="IsFeatured">Sản phẩm nổi bật</label>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" asp-for="IsActive" />
+                    <label class="form-check-label" asp-for="IsActive">Đang kinh doanh</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Cập nhật</button>
+                <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+            </form>
+        </div>
+    </div>
+</div>

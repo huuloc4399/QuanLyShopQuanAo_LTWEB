@@ -1,0 +1,45 @@
+﻿@model QuanLyQuanAoWeb.Models.Product
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Cập nhật tồn kho sản phẩm";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Cập nhật kho: <span class="text-primary">@Model.ProductName</span></h1>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body">
+            <form asp-action="EditStock" method="post">
+                <input type="hidden" name="ProductId" value="@Model.ProductId" />
+
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Màu sắc</th>
+                            <th>Kích thước (Size)</th>
+                            <th>Mã SKU</th>
+                            <th>Số lượng tồn kho mới</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var variant in Model.Variants)
+                        {
+                            <tr>
+                                <td>@(variant.Color?.ColorName ?? "N/A")</td>
+                                <td>@(variant.Size?.SizeName ?? "N/A")</td>
+                                <td>@variant.SKU</td>
+                                <td>
+                                    <input type="number" name="variantQuantities[@variant.VariantId]" value="@variant.StockQuantity" class="form-control" min="0" required style="max-width: 200px;" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Lưu thay đổi</button>
+                <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách tồn kho</a>
+            </form>
+        </div>
+    </div>
+</div>
