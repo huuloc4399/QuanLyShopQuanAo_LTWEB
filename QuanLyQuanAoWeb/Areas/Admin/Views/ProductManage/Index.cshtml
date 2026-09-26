@@ -1,0 +1,72 @@
+﻿@model IEnumerable<QuanLyQuanAoWeb.Models.Product>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Quản lý sản phẩm";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Quản lý Sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Sản phẩm</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Danh sách sản phẩm trong cửa hàng
+            <a href="/Admin/ProductManage/Create" class="btn btn-primary btn-sm float-end">+ Thêm sản phẩm mới</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá bán</th>
+                        <th>Tồn kho</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            // Tính tổng tồn kho từ các biến thể của sản phẩm
+                            int totalStock = item.Variants != null ? item.Variants.Sum(v => v.StockQuantity) : 0;
+
+                            <tr>
+                                <td>@item.ProductId</td>
+                                <td>
+                                    <div class="fw-bold">@item.ProductName</div>
+                                    @if (!string.IsNullOrEmpty(item.ProductCode))
+                                    {
+                                        <small class="text-muted">SKU: @item.ProductCode</small>
+                                    }
+                                </td>
+                                <td>@item.Price.ToString("N0") đ</td>
+                                <td>
+                                    <span class="badge @(totalStock > 0 ? "bg-success" : "bg-danger")">
+                                        @totalStock
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="/Admin/ProductManage/Edit/@item.ProductId" class="btn btn-warning btn-sm">Sửa</a>
+                                    <a href="/Admin/ProductManage/Details/@item.ProductId" class="btn.info btn btn-info btn-sm text-white">Chi tiết</a>
+                                    <a href="/Admin/ProductManage/Delete/@item.ProductId" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?');">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted">Chưa có dữ liệu sản phẩm trong hệ thống.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

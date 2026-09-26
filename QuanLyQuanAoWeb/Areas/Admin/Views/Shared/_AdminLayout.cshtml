@@ -14,6 +14,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #f1f5f9;
         }
+
         .sidebar {
             width: 260px;
             min-height: 100vh;
@@ -21,44 +22,51 @@
             color: #cbd5e1;
             transition: all 0.3s;
         }
-        .sidebar .nav-link {
-            color: #94a3b8;
-            font-weight: 500;
-            padding: 11px 18px;
-            border-radius: 8px;
-            margin: 3px 12px;
-            display: flex;
-            align-items: center;
-            transition: all 0.2s;
-        }
-        .sidebar .nav-link i {
-            font-size: 1.2rem;
-            margin-right: 12px;
-        }
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
-            color: #ffffff;
-            background-color: #3b82f6;
-        }
+
+            .sidebar .nav-link {
+                color: #94a3b8;
+                font-weight: 500;
+                padding: 11px 18px;
+                border-radius: 8px;
+                margin: 3px 12px;
+                display: flex;
+                align-items: center;
+                transition: all 0.2s;
+            }
+
+                .sidebar .nav-link i {
+                    font-size: 1.2rem;
+                    margin-right: 12px;
+                }
+
+                .sidebar .nav-link:hover, .sidebar .nav-link.active {
+                    color: #ffffff;
+                    background-color: #3b82f6;
+                }
+
         .content-wrapper {
             flex-grow: 1;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
+
         .admin-topbar {
             background: #ffffff;
             border-bottom: 1px solid #e2e8f0;
             padding: 12px 24px;
         }
+
         .stat-card {
             border: none;
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             transition: transform 0.2s;
         }
-        .stat-card:hover {
-            transform: translateY(-3px);
-        }
+
+            .stat-card:hover {
+                transform: translateY(-3px);
+            }
     </style>
 </head>
 <body>
@@ -78,52 +86,52 @@
             <div class="p-2 text-uppercase text-secondary small fw-bold px-3 mt-2" style="font-size: 0.7rem;">Màn hình Figma (Nhóm 4)</div>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                    <a class="nav-link @(Context.Request.Path.Value == "/Admin" || Context.Request.Path.StartsWithSegments("/Admin/Dashboard") ? "active" : "")" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
                         <i class="bi bi-speedometer2"></i> Dashboard Tổng Quan
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Người 4 phụ trách">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/ProductManage") ? "active" : "")" href="/Admin/ProductManage" title="Người 4 phụ trách">
                         <i class="bi bi-box-seam"></i> Quản Lý Sản Phẩm
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Người 4 phụ trách">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/CategoryManage") ? "active" : "")" href="/Admin/CategoryManage" title="Người 4 phụ trách">
                         <i class="bi bi-tags"></i> Danh Mục Quần Áo
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Người 4 phụ trách">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/Inventory") ? "active" : "")" href="/Admin/Inventory" title="Người 4 phụ trách">
                         <i class="bi bi-boxes"></i> Quản Lý Kho & Tồn Kho
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Người 3 phụ trách">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/Order") ? "active" : "")" href="#" title="Người 3 phụ trách">
                         <i class="bi bi-receipt-cutoff"></i> Danh Sách Đơn Hàng
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Người 3 phụ trách">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/Customer") ? "active" : "")" href="#" title="Người 3 phụ trách">
                         <i class="bi bi-people"></i> Quản Lý Khách Hàng
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Người 1 phụ trách">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/Rbac") ? "active" : "")" href="#" title="Người 1 phụ trách">
                         <i class="bi bi-shield-check"></i> Quyền Hạn & Phân Hệ (RBAC)
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Người 1 phụ trách">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/Account") ? "active" : "")" href="#" title="Người 1 phụ trách">
                         <i class="bi bi-person-gear"></i> Tài Khoản & Phân Quyền
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Khuyến mãi">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/Voucher") ? "active" : "")" href="#" title="Khuyến mãi">
                         <i class="bi bi-ticket-perforated"></i> Mã Giảm Giá & Voucher
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" title="Đánh giá">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/Review") ? "active" : "")" href="#" title="Đánh giá">
                         <i class="bi bi-chat-heart"></i> Đánh Giá Sản Phẩm
                     </a>
                 </li>

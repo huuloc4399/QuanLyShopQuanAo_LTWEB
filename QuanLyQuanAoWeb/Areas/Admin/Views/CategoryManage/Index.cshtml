@@ -1,0 +1,56 @@
+﻿@model IEnumerable<QuanLyQuanAoWeb.Models.Category>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Quản lý danh mục";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Quản lý Danh mục Quần Áo</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Danh mục</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Danh sách danh mục trong hệ thống
+            <a href="/Admin/CategoryManage/Create" class="btn btn-primary btn-sm float-end">+ Thêm danh mục mới</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên danh mục</th>
+                        <th>Mô tả / Slug</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CategoryId</td>
+                                <td><span class="fw-bold">@item.CategoryName</span></td>
+                                <td>@item.Description</td>
+                                <td>
+                                    <a href="/Admin/CategoryManage/Edit/@item.CategoryId" class="btn btn-warning btn-sm">Sửa</a>
+                                    <a href="/Admin/CategoryManage/Delete/@item.CategoryId" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa danh mục này?');">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">Chưa có dữ liệu danh mục trong hệ thống.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<QuanLyQuanAoWeb.Models.Product>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Quản lý tồn kho";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Quản lý Tồn Kho</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Admin/Dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Tồn kho</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-boxes me-1"></i>
+            Theo dõi số lượng hàng tồn trong kho
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá bán</th>
+                        <th>Số lượng tồn kho</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            int totalStock = item.Variants != null ? item.Variants.Sum(v => v.StockQuantity) : 0;
+
+                            <tr>
+                                <td>@item.ProductId</td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Price.ToString("N0") đ</td>
+                                <td>
+                                    <span class="fw-bold @(totalStock <= 5 ? "text-danger" : "text-success")">
+                                        @totalStock
+                                    </span>
+                                </td>
+                                <td>
+                                    @if (totalStock <= 5)
+                                    {
+                                        <span class="badge bg-danger">Sắp hết hàng</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Còn hàng</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a href="/Admin/Inventory/EditStock/@item.ProductId" class="btn btn-warning btn-sm">Cập nhật kho</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">Chưa có dữ liệu tồn kho.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
