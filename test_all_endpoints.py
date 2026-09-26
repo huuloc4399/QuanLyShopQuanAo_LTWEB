@@ -116,12 +116,69 @@ def test_admin_flow():
     assert "TỔNG DOANH THU" in content
     assert "Cảnh Báo Tồn Kho Sắp Hết" in content
 
+# Test 6: Danh mục sản phẩm (Figma Screen 3)
+def test_products_catalog():
+    res = opener.open(f"{URL}/Home/Products")
+    content = norm(res.read().decode('utf-8'))
+    assert res.status == 200
+    assert "SẢN PHẨM ĐỒNG PHỤC" in content
+    assert "Giải pháp cho mọi ngành nghề" in content
+    assert "Trang thiết bị cho ngành lao động đặc thù" in content
+    assert "Yêu cầu tư vấn thiết bị" in content
+
+# Test 7: Cẩm nang & Tin tức (Figma Screen 4)
+def test_news_page():
+    res = opener.open(f"{URL}/Home/News")
+    content = norm(res.read().decode('utf-8'))
+    assert res.status == 200
+    assert "TIN TỨC & CẨM NANG" in content
+    assert "Chất liệu vải may áo thun đồng phục phổ biến nhất hiện nay" in content
+    assert "Muốn nhận bản tin định kỳ về xu hướng thiết kế đồng phục?" in content
+
+# Test 8: Báo giá & Liên hệ (Figma Screen 5)
+def test_contact_page():
+    res = opener.open(f"{URL}/Home/Contact")
+    content = norm(res.read().decode('utf-8'))
+    assert res.status == 200
+    assert "LIÊN HỆ VỚI CHÚNG TÔI" in content
+    assert "Nhận tư vấn & báo giá đồng phục doanh nghiệp" in content
+    assert "YÊU CẦU BÁO GIÁ NHANH" in content
+    assert "140 Lê Trọng Tấn" in content
+
+# Test 9: Gửi yêu cầu báo giá qua POST
+def test_contact_submit():
+    res = opener.open(f"{URL}/Home/Contact")
+    raw = res.read().decode('utf-8')
+    token_match = re.search(r'name="__RequestVerificationToken" type="hidden" value="([^"]+)"', raw)
+    assert token_match, "Không tìm thấy CSRF Token tại trang Liên Hệ"
+    token = token_match.group(1)
+
+    data = urllib.parse.urlencode({
+        '__RequestVerificationToken': token,
+        'FullName': 'Công ty ABC Test',
+        'PhoneNumber': '0909999888',
+        'Email': 'abc@example.com',
+        'CompanyName': 'Tập đoàn ABC',
+        'UniformType': 'Áo Thun & Polo Doanh Nghiệp',
+        'Quantity': '100 - 300 cái',
+        'Note': 'Cần tư vấn mẫu áo polo thêu logo doanh nghiệp'
+    }).encode('utf-8')
+    req = urllib.request.Request(f"{URL}/Home/Contact", data=data)
+    res = opener.open(req)
+    content = norm(res.read().decode('utf-8'))
+    assert "Gửi yêu cầu thành công!" in content
+    assert "Công ty ABC Test" in content
+
 print("\n=== 2. Tiến hành chạy kiểm tra toàn bộ Endpoints ===")
 test("1. Trang Chủ Khách Hàng (Home/Index)", test_home)
 test("2. Chi Tiết Sản Phẩm & Biến Thể (Home/Details/1)", test_details)
 test("3. Nghiệp Vụ Giỏ Hàng & Voucher (Cart/Index)", test_cart_add)
 test("4. Trang Đăng Nhập Tài Khoản (Account/Login)", test_login_get)
 test("5. Phân Quyền & Dashboard Quản Trị (Admin/Dashboard)", test_admin_flow)
+test("6. Danh Mục Sản Phẩm (Home/Products - Screen 3)", test_products_catalog)
+test("7. Cẩm Nang & Tin Tức (Home/News - Screen 4)", test_news_page)
+test("8. Báo Giá & Liên Hệ (Home/Contact - Screen 5)", test_contact_page)
+test("9. Gửi Form Báo Giá (POST Home/Contact)", test_contact_submit)
 
 print("\n=== 3. Tắt tiến trình Web kiểm thử ===")
 proc.terminate()

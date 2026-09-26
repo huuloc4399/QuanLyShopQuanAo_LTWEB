@@ -1,0 +1,177 @@
+@model QuanLyQuanAoWeb.Models.ViewModels.NewsViewModel
+@{
+    ViewData["Title"] = "Tin Tức & Cẩm Nang May Mặc Doanh Nghiệp";
+}
+
+<!-- Page Banner: Deep Navy Background -->
+<section class="bg-navy text-white py-4 py-md-5 position-relative overflow-hidden">
+    <div class="container-fluid px-lg-5">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" class="text-white-50 text-decoration-none">Trang chủ</a></li>
+                <li class="breadcrumb-item active text-orange fw-bold" aria-current="page">Cẩm nang</li>
+            </ol>
+        </nav>
+
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-6 fw-bolder text-white text-uppercase tracking-wide mb-2">
+                    TIN TỨC &amp; CẨM NANG
+                </h1>
+                <p class="text-white-50 lead fs-6 mb-0">
+                    Kiến thức may mặc, xu hướng thời trang doanh nghiệp và các thông tin ngành cập nhật mới nhất.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <div class="d-inline-flex align-items-center gap-2 bg-white bg-opacity-10 px-3 py-2 rounded-pill border border-white border-opacity-20 text-white small">
+                    <i class="bi bi-journal-bookmark-fill text-orange fs-5"></i>
+                    <span>Cập nhật liên tục 24/7 từ chuyên gia HUIT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Filter Tags Bar -->
+<section class="bg-warm border-bottom py-3 sticky-top shadow-xs" style="top: 57px; z-index: 990;">
+    <div class="container-fluid px-lg-5">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                @foreach (var tag in Model.Tags)
+                {
+                    bool isSelected = string.Equals(Model.SelectedTag, tag, StringComparison.OrdinalIgnoreCase);
+                    <a asp-action="News" asp-route-tag="@tag" 
+                       class="btn btn-sm rounded-pill px-3 py-1 fw-semibold @(isSelected ? "btn-navy shadow-sm" : "btn-outline-secondary bg-white text-navy border-sand")">
+                        @tag
+                    </a>
+                }
+            </div>
+
+            <!-- Search input -->
+            <div class="d-flex align-items-center gap-2 ms-auto">
+                <div class="input-group input-group-sm" style="min-width: 220px;">
+                    <input type="text" class="form-control border-sand" placeholder="Tìm bài viết...">
+                    <button class="btn btn-navy" type="button"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Articles Grid Section (3x3 matching Figma) -->
+<section class="py-5 bg-white">
+    <div class="container-fluid px-lg-5">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+            @foreach (var item in Model.Articles)
+            {
+                <div class="col">
+                    <article class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden d-flex flex-column transition-hover">
+                        <!-- Article Image -->
+                        <div class="position-relative overflow-hidden bg-warm" style="height: 220px;">
+                            <img src="@item.ImageUrl" 
+                                 alt="@item.Title" 
+                                 class="w-100 h-100 object-fit-cover product-img-zoom"
+                                 onerror="this.src='https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?w=600&auto=format&fit=crop&q=80'">
+                            
+                            <!-- Category Badge -->
+                            <span class="badge @(item.TagColor == "orange" ? "bg-orange" : "bg-navy") text-white position-absolute top-0 start-0 m-3 px-3 py-1 rounded-pill small shadow-xs">
+                                @item.Tag
+                            </span>
+
+                            <span class="badge bg-white text-dark position-absolute bottom-0 end-0 m-2 px-2 py-1 small shadow-xs border">
+                                <i class="bi bi-clock me-1 text-orange"></i>@item.ReadTimeMinutes phút đọc
+                            </span>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="card-body p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex align-items-center gap-2 text-muted small mb-2">
+                                <span><i class="bi bi-calendar3 me-1 text-orange"></i>@item.PublishedDate</span>
+                                <span>•</span>
+                                <span><i class="bi bi-person me-1"></i>@item.Author</span>
+                            </div>
+
+                            <h5 class="card-title fw-bold text-navy mb-2 line-clamp-2" style="font-size: 1.1rem; line-height: 1.4;">
+                                <a href="javascript:void(0)" class="text-navy text-decoration-none hover-orange">
+                                    @item.Title
+                                </a>
+                            </h5>
+
+                            <p class="card-text text-muted small line-clamp-3 mb-4">
+                                @item.Summary
+                            </p>
+
+                            <!-- Card Footer -->
+                            <div class="mt-auto pt-3 border-top border-light d-flex align-items-center justify-content-between">
+                                <a href="javascript:void(0)" class="text-orange fw-bold text-decoration-none small d-inline-flex align-items-center gap-1 hover-navy">
+                                    Đọc tiếp <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <span class="text-muted small text-xs">
+                                    <i class="bi bi-eye me-1"></i>@item.Views lượt xem
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+
+        <!-- Modern Pagination Bar matching Figma -->
+        <nav aria-label="Page navigation" class="mb-5">
+            <ul class="pagination justify-content-center gap-2">
+                <li class="page-item disabled">
+                    <a class="page-link rounded-circle border-sand text-muted d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" href="#" tabindex="-1" aria-disabled="true">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link rounded-circle bg-navy border-navy text-white fw-bold d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        1
+                    </span>
+                </li>
+                <li class="page-item">
+                    <a class="page-link rounded-circle border-sand text-navy fw-semibold d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" href="#">
+                        2
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link rounded-circle border-sand text-navy fw-semibold d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" href="#">
+                        3
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link rounded-circle border-sand text-navy d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" href="#">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Newsletter CTA Banner matching Figma News design -->
+        <div class="card bg-orange text-white border-0 rounded-4 p-4 p-md-5 my-4 shadow-sm overflow-hidden position-relative">
+            <div class="row align-items-center g-4 position-relative" style="z-index: 2;">
+                <div class="col-lg-7">
+                    <span class="badge bg-navy text-white px-3 py-1 rounded-pill small mb-2">BẢN TIN CHUYÊN NGÀNH</span>
+                    <h3 class="fw-bolder text-white mb-2">Muốn nhận bản tin định kỳ về xu hướng thiết kế đồng phục?</h3>
+                    <p class="text-white-50 mb-0">Nhận cẩm nang phối màu, bảng báo giá gốc cập nhật hàng quý và ưu đãi độc quyền 15% cho doanh nghiệp đăng ký sớm.</p>
+                </div>
+                <div class="col-lg-5 position-relative" style="z-index: 10;">
+                    <form class="d-flex flex-sm-row flex-column gap-2" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký nhận tin từ HUIT Uniform!');">
+                        <input type="email" required class="form-control form-control-lg border-0 shadow-sm" placeholder="Nhập email doanh nghiệp của bạn...">
+                        <button type="submit" class="btn btn-navy text-white fw-bold px-4 py-2 text-nowrap shadow-sm">
+                            Đăng ký ngay
+                        </button>
+                    </form>
+                    <small class="text-white-50 mt-2 d-block text-xs">
+                        <i class="bi bi-lock-fill me-1"></i>Cam kết không spam, hủy đăng ký bất kỳ lúc nào chỉ với 1 cú nhấp chuột.
+                    </small>
+                </div>
+            </div>
+            
+            <div class="position-absolute end-0 bottom-0 pointer-events-none d-none d-md-block" style="transform: translate(15%, 25%); z-index: 1; opacity: 0.08;">
+                <i class="bi bi-envelope-check-fill" style="font-size: 14rem; color: white;"></i>
+            </div>
+        </div>
+    </div>
+</section>

@@ -52,35 +52,35 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarMainContent">
-                    <!-- Nav Links -->
-                    <ul class="navbar-nav mx-auto mb-2 mb-xl-0">
+                    <!-- Nav Links matching Figma Design -->
+                    <ul class="navbar-nav mx-auto mb-2 mb-xl-0 gap-xl-1">
                         <li class="nav-item">
-                            <a class="nav-link text-navy fw-semibold" asp-area="" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link text-navy fw-semibold px-2" asp-area="" asp-controller="Home" asp-action="Index">
                                 Trang Chủ
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-navy fw-semibold" href="#featured-products">
-                                Mẫu Áo Nổi Bật
+                            <a class="nav-link text-navy fw-semibold px-2" asp-area="" asp-controller="Home" asp-action="Products">
+                                Sản Phẩm
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-navy fw-semibold" href="#steps-process">
+                            <a class="nav-link text-navy fw-semibold px-2" href="/Home/Index#steps-process">
                                 Quy Trình May
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-navy fw-semibold" href="#pricing-packages">
+                            <a class="nav-link text-navy fw-semibold px-2" href="/Home/Index#pricing-packages">
                                 Gói Báo Giá
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-navy fw-semibold" href="#fabric-guide">
-                                Cẩm Nang Vải
+                            <a class="nav-link text-navy fw-semibold px-2" asp-area="" asp-controller="Home" asp-action="News">
+                                Cẩm Nang
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-navy fw-semibold" href="#contact-quote">
+                            <a class="nav-link text-navy fw-semibold px-2" asp-area="" asp-controller="Home" asp-action="Contact">
                                 Liên Hệ
                             </a>
                         </li>
@@ -89,7 +89,7 @@
                     <!-- Cart & User Actions -->
                     <div class="d-flex align-items-center gap-2">
                         <!-- Compact Search Form -->
-                        <form class="d-none d-xxl-block me-1" asp-area="" asp-controller="Home" asp-action="Index" method="get">
+                        <form class="d-none d-xxl-block me-1" asp-area="" asp-controller="Home" asp-action="Products" method="get">
                             <div class="input-group input-group-sm">
                                 <input class="form-control border-sand bg-warm" type="search" name="keyword" placeholder="Tìm mẫu áo..." style="width: 130px; font-size: 0.85rem;">
                                 <button class="btn btn-outline-secondary border-sand bg-white text-navy" type="submit"><i class="bi bi-search"></i></button>
@@ -138,8 +138,8 @@
                         }
 
                         <!-- Orange CTA Request Quote -->
-                        <a href="#contact-quote" class="btn btn-brand-orange btn-sm px-3 py-2">
-                            <i class="bi bi-file-earmark-text me-1"></i> Báo giá
+                        <a asp-area="" asp-controller="Home" asp-action="Contact" class="btn btn-brand-orange btn-sm px-3 py-2 fw-semibold">
+                            <i class="bi bi-file-earmark-text me-1"></i> Báo giá ngay
                         </a>
                     </div>
                 </div>
@@ -189,12 +189,12 @@
                 <div class="col-lg-2 col-md-6">
                     <h6>DANH MỤC SẢN PHẨM</h6>
                     <ul class="list-unstyled small mb-0 d-flex flex-column gap-2">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Đồng phục công sở</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Áo thun Polo sự kiện</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Đồ bảo hộ & Áo phản quang</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Đồng phục Nhà hàng - Cafe</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Nón & Mũ bảo hộ lao động</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Giày bảo hộ chống đinh</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Products" asp-route-categoryId="2">Đồng phục công sở</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Products" asp-route-categoryId="1">Áo thun Polo sự kiện</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Products" asp-route-categoryId="3">Đồ bảo hộ & Áo phản quang</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Products" asp-route-categoryId="4">Đồng phục Nhà hàng - Cafe</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Products" asp-route-categoryId="5">Áo khoác gió & Mũ nón</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Products">Tất cả sản phẩm</a></li>
                     </ul>
                 </div>
 
@@ -202,12 +202,12 @@
                 <div class="col-lg-3 col-md-6">
                     <h6>VỀ CHÚNG TÔI & DỊCH VỤ</h6>
                     <ul class="list-unstyled small mb-0 d-flex flex-column gap-2">
-                        <li><a href="#about-factory">Giới thiệu năng lực xưởng may</a></li>
-                        <li><a href="#steps-process">Quy trình đặt may 5 bước</a></li>
-                        <li><a href="#pricing-packages">Gói dịch vụ cho doanh nghiệp</a></li>
-                        <li><a href="#fabric-guide">Bảng tra cứu chất liệu vải</a></li>
-                        <li><a href="#contact-quote">Chính sách bảo hành 1 đổi 1</a></li>
-                        <li><a href="#contact-quote">Hồ sơ năng lực (Profile PDF)</a></li>
+                        <li><a href="/Home/Index#about-factory">Giới thiệu năng lực xưởng may</a></li>
+                        <li><a href="/Home/Index#steps-process">Quy trình đặt may 5 bước</a></li>
+                        <li><a href="/Home/Index#pricing-packages">Gói dịch vụ cho doanh nghiệp</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="News">Cẩm nang & Báo chí may mặc</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Chính sách bảo hành 1 đổi 1</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Yêu cầu báo giá chi tiết</a></li>
                     </ul>
                 </div>
 

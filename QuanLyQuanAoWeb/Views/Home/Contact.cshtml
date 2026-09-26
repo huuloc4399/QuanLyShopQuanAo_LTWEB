@@ -1,0 +1,277 @@
+@model QuanLyQuanAoWeb.Models.ViewModels.ContactRequestViewModel
+@{
+    ViewData["Title"] = "Liên Hệ & Yêu Cầu Báo Giá";
+}
+
+<!-- Page Banner: Deep Navy Background -->
+<section class="bg-navy text-white py-4 py-md-5 position-relative overflow-hidden">
+    <div class="container-fluid px-lg-5">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" class="text-white-50 text-decoration-none">Trang chủ</a></li>
+                <li class="breadcrumb-item active text-orange fw-bold" aria-current="page">Liên hệ</li>
+            </ol>
+        </nav>
+
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h1 class="display-6 fw-bolder text-white text-uppercase tracking-wide mb-2">
+                    LIÊN HỆ VỚI CHÚNG TÔI
+                </h1>
+                <p class="text-white-50 lead fs-6 mb-0">
+                    Đội ngũ chuyên viên tư vấn kỹ thuật &amp; thiết kế sẵn sàng phục vụ và giải đáp mọi yêu cầu của Quý khách 24/7.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <div class="d-inline-flex align-items-center gap-2 bg-white bg-opacity-10 px-3 py-2 rounded-pill border border-white border-opacity-20 text-white small">
+                    <span class="spinner-grow spinner-grow-sm text-success" role="status"></span>
+                    <span>Tư vấn viên đang trực tuyến: <strong>028 3816 1673</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3 Quick Contact Info Cards matching Figma top section -->
+<section class="py-4 bg-warm border-bottom">
+    <div class="container-fluid px-lg-5">
+        <div class="row g-3">
+            <!-- Card 1: Hotline -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 p-3 bg-white d-flex flex-row align-items-center gap-3 transition-hover">
+                    <div class="bg-orange bg-opacity-10 text-orange rounded-3 p-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 54px; height: 54px;">
+                        <i class="bi bi-telephone-inbound-fill fs-4"></i>
+                    </div>
+                    <div>
+                        <small class="text-muted text-uppercase fw-semibold d-block">Hotline tư vấn</small>
+                        <a href="tel:0908123456" class="fs-6 fw-bold text-navy text-decoration-none d-block">0908 123 456</a>
+                        <small class="text-muted">028 3816 1673 (Hỗ trợ 24/7)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Email -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 p-3 bg-white d-flex flex-row align-items-center gap-3 transition-hover">
+                    <div class="bg-navy bg-opacity-10 text-navy rounded-3 p-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 54px; height: 54px;">
+                        <i class="bi bi-envelope-paper-fill fs-4"></i>
+                    </div>
+                    <div>
+                        <small class="text-muted text-uppercase fw-semibold d-block">Email tiếp nhận</small>
+                        <a href="mailto:dongphuc@huit.edu.vn" class="fs-6 fw-bold text-navy text-decoration-none d-block">dongphuc@huit.edu.vn</a>
+                        <small class="text-muted">kinhdoanh@huituniform.vn</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Address -->
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 p-3 bg-white d-flex flex-row align-items-center gap-3 transition-hover">
+                    <div class="bg-success bg-opacity-10 text-success rounded-3 p-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 54px; height: 54px;">
+                        <i class="bi bi-geo-alt-fill fs-4"></i>
+                    </div>
+                    <div>
+                        <small class="text-muted text-uppercase fw-semibold d-block">Xưởng may &amp; Văn phòng</small>
+                        <span class="fs-6 fw-bold text-navy d-block">140 Lê Trọng Tấn, P. Tây Thạnh</span>
+                        <small class="text-muted">Q. Tân Phú, TP. Hồ Chí Minh</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Form & Map Section (2 Columns matching Figma) -->
+<section class="py-5 bg-white">
+    <div class="container-fluid px-lg-5">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success border-0 shadow-sm rounded-3 p-4 mb-4 d-flex align-items-center gap-3" role="alert">
+                <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                <div>
+                    <h5 class="alert-heading fw-bold mb-1">Gửi yêu cầu thành công!</h5>
+                    <p class="mb-0">@TempData["SuccessMessage"]</p>
+                </div>
+            </div>
+        }
+
+        <div class="row g-5 align-items-start">
+            <!-- Left Column: Commitments & Google Map -->
+            <div class="col-lg-6">
+                <div class="pe-lg-3">
+                    <span class="badge bg-navy text-white px-3 py-1 rounded-pill small mb-2">HỖ TRỢ DOANH NGHIỆP</span>
+                    <h2 class="display-6 fw-bold text-navy mb-3">
+                        Nhận tư vấn &amp; báo giá đồng phục doanh nghiệp
+                    </h2>
+                    <p class="text-muted lead fs-6 mb-4">
+                        Điền thông tin vào biểu mẫu, đội ngũ chuyên viên của HUIT UNIFORM sẽ liên hệ lại trong vòng 15 phút làm việc để lắng nghe nhu cầu và gửi catalog mẫu tận nơi.
+                    </p>
+
+                    <!-- 3 Guarantees with icons -->
+                    <div class="d-flex flex-column gap-3 mb-4">
+                        <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-warm border border-sand">
+                            <div class="bg-orange text-white rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px;">
+                                <i class="bi bi-palette-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-navy mb-1">Thiết kế mẫu 3D &amp; gửi mẫu vải miễn phí</h6>
+                                <p class="small text-muted mb-0">Hỗ trợ phối màu theo nhận diện thương hiệu, gửi mẫu vải thực tế tận bàn làm việc để khách duyệt trước.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-warm border border-sand">
+                            <div class="bg-navy text-white rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px;">
+                                <i class="bi bi-tags-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-navy mb-1">Báo giá minh bạch, chiết khấu lên đến 20%</h6>
+                                <p class="small text-muted mb-0">Giá gốc tận xưởng không qua trung gian thương mại, ưu đãi đặc biệt cho hợp đồng may số lượng lớn.</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-3 p-3 rounded-3 bg-warm border border-sand">
+                            <div class="bg-success text-white rounded-circle p-2 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px;">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-navy mb-1">Cam kết tiến độ giao hàng đúng hẹn 100%</h6>
+                                <p class="small text-muted mb-0">Điều khoản phạt hợp đồng rõ ràng, đảm bảo toàn bộ nhân sự có đồng phục chuẩn trước sự kiện của công ty.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Google Maps Frame -->
+                    <div class="rounded-4 overflow-hidden shadow-sm border border-sand bg-white">
+                        <div class="bg-navy text-white p-2 px-3 small d-flex align-items-center justify-content-between">
+                            <span><i class="bi bi-pin-map-fill text-orange me-1"></i> Xưởng may &amp; Phòng trưng bày HUIT</span>
+                            <a href="https://maps.google.com/?q=140+Le+Trong+Tan,+Tay+Thanh,+Tan+Phu,+Ho+Chi+Minh" target="_blank" class="text-white text-decoration-none text-xs">Mở bản đồ lớn <i class="bi bi-box-arrow-up-right"></i></a>
+                        </div>
+                        <div class="position-relative" style="height: 250px; background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&auto=format&fit=crop&q=80') center/cover;">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0624021272654!2d106.6262973748053!3d10.806530389344196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be27d8b4f4d%3A0x92dcba2950430867!2zMTQwIEzDqiBUcuG7jW5nIFThuqVuLCBUw6J5IFRo4bqhbGgsIFTDom4gUGjDuiwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0; position:absolute; top:0; left:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                            <!-- Map Pin Overlay Badge -->
+                            <div class="position-absolute top-50 start-50 translate-middle bg-navy text-white px-3 py-2 rounded-pill shadow d-flex align-items-center gap-2 small border border-warning" style="z-index: 2; pointer-events: none;">
+                                <i class="bi bi-geo-alt-fill text-orange fs-5"></i>
+                                <span class="fw-bold">HUIT UNIFORM (140 Lê Trọng Tấn)</span>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-light border-top d-flex flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="small text-muted">
+                                <i class="bi bi-geo-alt-fill text-orange me-1"></i> <strong>140 Lê Trọng Tấn, P. Tây Thạnh, Q. Tân Phú</strong> (ĐH Công Thương TP.HCM)
+                            </div>
+                            <a href="https://maps.google.com/?q=140+Le+Trong+Tan,+Tay+Thanh,+Tan+Phu,+Ho+Chi+Minh" target="_blank" class="btn btn-sm btn-brand-outline-navy py-1 px-3 fw-semibold">
+                                <i class="bi bi-cursor-fill me-1"></i> Chỉ đường
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Interactive Quotation Form -->
+            <div class="col-lg-6">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="bg-navy text-white p-4">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h4 class="fw-bold mb-1 text-white">YÊU CẦU BÁO GIÁ NHANH</h4>
+                                <small class="text-white-50">Nhận báo giá dự toán chi tiết trong 15 phút</small>
+                            </div>
+                            <div class="bg-orange text-white rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                                <i class="bi bi-file-earmark-text-fill fs-5"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-4 p-md-5 bg-warm bg-opacity-50">
+                        <form asp-action="Contact" method="post">
+                            @Html.AntiForgeryToken()
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                            <div class="row g-3">
+                                <!-- Full Name -->
+                                <div class="col-md-6">
+                                    <label asp-for="FullName" class="form-label fw-bold text-navy small">Họ và tên <span class="text-danger">*</span></label>
+                                    <input asp-for="FullName" class="form-control border-sand bg-white py-2" placeholder="Nguyễn Văn A" required />
+                                    <span asp-validation-for="FullName" class="text-danger small"></span>
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div class="col-md-6">
+                                    <label asp-for="PhoneNumber" class="form-label fw-bold text-navy small">Số điện thoại <span class="text-danger">*</span></label>
+                                    <input asp-for="PhoneNumber" class="form-control border-sand bg-white py-2" placeholder="0908 123 456" required />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <label asp-for="Email" class="form-label fw-bold text-navy small">Địa chỉ Email</label>
+                                    <input asp-for="Email" type="email" class="form-control border-sand bg-white py-2" placeholder="tenban@congty.com" />
+                                    <span asp-validation-for="Email" class="text-danger small"></span>
+                                </div>
+
+                                <!-- Company Name -->
+                                <div class="col-md-6">
+                                    <label asp-for="CompanyName" class="form-label fw-bold text-navy small">Tên công ty / Doanh nghiệp</label>
+                                    <input asp-for="CompanyName" class="form-control border-sand bg-white py-2" placeholder="Công ty CP / TNHH..." />
+                                </div>
+
+                                <!-- Uniform Type Dropdown -->
+                                <div class="col-md-6">
+                                    <label asp-for="UniformType" class="form-label fw-bold text-navy small">Loại đồng phục cần tư vấn</label>
+                                    <select asp-for="UniformType" class="form-select border-sand bg-white py-2">
+                                        <option value="Áo Thun & Polo Doanh Nghiệp">Áo Thun &amp; Polo Doanh Nghiệp</option>
+                                        <option value="Áo Sơ Mi & Vest Công Sở">Áo Sơ Mi &amp; Vest Công Sở</option>
+                                        <option value="Đồ Bảo Hộ & Áo Phản Quang">Đồ Bảo Hộ &amp; Áo Phản Quang</option>
+                                        <option value="Đồng Phục Nhà Hàng & Cafe">Đồng Phục Nhà Hàng &amp; Cafe</option>
+                                        <option value="Áo Khoác Gió & Mũ Nón">Áo Khoác Gió &amp; Mũ Nón</option>
+                                        <option value="May Mẫu Thiết Kế Riêng">May Mẫu Thiết Kế Riêng</option>
+                                    </select>
+                                </div>
+
+                                <!-- Quantity Dropdown -->
+                                <div class="col-md-6">
+                                    <label asp-for="Quantity" class="form-label fw-bold text-navy small">Số lượng may dự kiến</label>
+                                    <select asp-for="Quantity" class="form-select border-sand bg-white py-2">
+                                        <option value="20 - 50 cái">20 - 50 cái</option>
+                                        <option value="50 - 100 cái">50 - 100 cái</option>
+                                        <option value="100 - 300 cái">100 - 300 cái</option>
+                                        <option value="Trên 300 cái">Trên 300 cái (Ưu đãi đặc biệt)</option>
+                                    </select>
+                                </div>
+
+                                <!-- Notes -->
+                                <div class="col-12">
+                                    <label asp-for="Note" class="form-label fw-bold text-navy small">Nội dung yêu cầu chi tiết</label>
+                                    <textarea asp-for="Note" rows="4" class="form-control border-sand bg-white" placeholder="Mô tả về tone màu nhận diện thương hiệu, yêu cầu in thêu logo, ngày mong muốn nhận hàng..."></textarea>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12 pt-2">
+                                    <button type="submit" class="btn btn-brand-orange w-100 py-3 fw-bold fs-6 shadow-sm rounded-3">
+                                        <i class="bi bi-send-fill me-2"></i> GỬI YÊU CẦU BÁO GIÁ NGAY
+                                    </button>
+                                </div>
+
+                                <!-- Security Note -->
+                                <div class="col-12 text-center">
+                                    <small class="text-muted text-xs">
+                                        <i class="bi bi-shield-check text-success me-1"></i> Thông tin của Quý khách được bảo mật tuyệt đối theo chính sách của HUIT Uniform.
+                                    </small>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
