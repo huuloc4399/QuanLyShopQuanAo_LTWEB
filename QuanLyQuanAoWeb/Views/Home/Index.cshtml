@@ -1,171 +1,846 @@
 @model QuanLyQuanAoWeb.Models.ViewModels.HomeViewModel
 @{
-    ViewData["Title"] = "Trang Chủ - Thời Trang Quần Áo HUIT";
+    ViewData["Title"] = "Trang Chủ - Xưởng May Đồng Phục & Đồ Bảo Hộ Doanh Nghiệp HUIT";
 }
 
-<!-- Hero Banner Section -->
-<div class="bg-dark text-white py-5 mb-5" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
-    <div class="container py-4">
-        <div class="row align-items-center">
+<!-- ================= 1. HERO BANNER SECTION ================= -->
+<section class="py-5 bg-warm border-bottom border-sand position-relative overflow-hidden">
+    <div class="container py-3 py-lg-4">
+        <div class="row align-items-center g-5">
+            <!-- Hero Left Content -->
             <div class="col-lg-7">
-                <span class="badge bg-danger mb-3 px-3 py-2 text-uppercase fw-bold">Bộ Sưu Tập Mới 2026</span>
-                <h1 class="display-4 fw-bold mb-3">Phong Cách Thời Trang Trẻ Trung & Thanh Lịch</h1>
-                <p class="lead text-light mb-4">
-                    Khám phá hàng trăm mẫu áo thun cotton, sơ mi Oxford, quần jean và áo khoác thời thượng với chất lượng vượt trội.
+                <div class="d-inline-flex align-items-center gap-2 mb-3">
+                    <span class="badge-brand-orange">
+                        <i class="bi bi-award-fill me-1"></i> XƯỞNG MAY ĐỒNG PHỤC DOANH NGHIỆP UY TÍN
+                    </span>
+                    <span class="badge-brand-navy d-none d-sm-inline">
+                        <i class="bi bi-shield-fill-check me-1"></i> Chuẩn TCVN
+                    </span>
+                </div>
+
+                <h1 class="display-4 fw-bolder text-navy mb-3 lh-sm">
+                    May đồng phục &amp;<br />
+                    bảo hộ lao động<br />
+                    <span class="text-orange">đúng chuẩn, chuyên nghiệp</span>
+                </h1>
+
+                <p class="lead text-muted mb-4" style="max-width: 600px; font-size: 1.15rem;">
+                    Xưởng may trực tiếp tại TP.HCM với năng lực hơn 60.000 sản phẩm/tháng. Đảm bảo chất liệu vải bền đẹp, đường may tỉ mỉ, in thêu logo sắc nét và cam kết giao hàng đúng tiến độ cho doanh nghiệp.
                 </p>
-                <div class="d-flex gap-2">
-                    <a href="#product-list" class="btn btn-primary btn-lg px-4 fw-bold">
-                        <i class="bi bi-bag-check me-2"></i>Mua sắm ngay
+
+                <!-- Action CTA Buttons -->
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a href="#contact-quote" class="btn btn-brand-orange btn-lg px-4 shadow-sm">
+                        <i class="bi bi-file-earmark-text-fill me-2"></i> Nhận báo giá ngay
                     </a>
-                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-light btn-lg px-4">
-                        <i class="bi bi-speedometer2 me-2"></i>Vào Trang Admin
+                    <a href="#featured-products" class="btn btn-brand-outline-navy btn-lg px-4">
+                        <i class="bi bi-grid-3x3-gap-fill me-2"></i> Khám phá mẫu áo
                     </a>
                 </div>
+
+                <!-- 3 Key Metric Stats -->
+                <div class="pt-3 border-top border-sand">
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <div class="fw-bold fs-3 text-navy lh-1">1,500+</div>
+                            <small class="text-muted">Doanh nghiệp tin chọn</small>
+                        </div>
+                        <div class="col-4 border-start border-sand ps-3">
+                            <div class="fw-bold fs-3 text-navy lh-1">68,000+</div>
+                            <small class="text-muted">Bộ quần áo / tháng</small>
+                        </div>
+                        <div class="col-4 border-start border-sand ps-3">
+                            <div class="fw-bold fs-3 text-navy lh-1">12+</div>
+                            <small class="text-muted">Năm kinh nghiệm</small>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-5 text-center d-none d-lg-block">
-                <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600" class="img-fluid rounded-4 shadow-lg" alt="Fashion Banner" style="max-height: 340px; object-fit: cover;">
+
+            <!-- Hero Right Visual Showcase -->
+            <div class="col-lg-5">
+                <div class="position-relative">
+                    <div class="rounded-4 overflow-hidden shadow-lg border border-sand bg-white p-2">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&auto=format&fit=crop&q=80" 
+                             alt="Xưởng may đồng phục chuyên nghiệp" 
+                             class="img-fluid rounded-3 w-100" 
+                             style="height: 380px; object-fit: cover;">
+                    </div>
+                    
+                    <!-- Floating Badge 1: Quality Guarantee -->
+                    <div class="position-absolute bg-white p-3 rounded-3 shadow border border-sand d-flex align-items-center gap-3" 
+                         style="bottom: -20px; left: -15px; max-width: 260px;">
+                        <div class="bg-orange text-white rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                            <i class="bi bi-check2-circle fs-4"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold text-navy small">Chất lượng vải chuẩn</div>
+                            <small class="text-muted" style="font-size: 0.78rem;">Không phai màu &amp; không xù lông</small>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge 2: On-time Delivery -->
+                    <div class="position-absolute bg-navy text-white p-2 px-3 rounded-pill shadow-sm d-flex align-items-center gap-2" 
+                         style="top: 20px; right: -15px;">
+                        <i class="bi bi-clock-history text-orange"></i>
+                        <span class="small fw-semibold">Giao hàng đúng hẹn 100%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 2. TRUST & CERTIFICATE TICKER BAR ================= -->
+<div class="bg-white py-3 border-bottom border-sand">
+    <div class="container">
+        <div class="row g-3 text-center align-items-center">
+            <div class="col-6 col-md-4 col-lg d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-patch-check-fill text-orange fs-5"></i>
+                <span class="small fw-bold text-navy">Vải kháng khuẩn, thấm hút</span>
+            </div>
+            <div class="col-6 col-md-4 col-lg d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-rulers text-orange fs-5"></i>
+                <span class="small fw-bold text-navy">Chuẩn form dáng theo bảng size</span>
+            </div>
+            <div class="col-6 col-md-4 col-lg d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-palette-fill text-orange fs-5"></i>
+                <span class="small fw-bold text-navy">Bền màu trên 100 lần giặt</span>
+            </div>
+            <div class="col-6 col-md-4 col-lg d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-shield-check text-orange fs-5"></i>
+                <span class="small fw-bold text-navy">Đạt chuẩn TCVN An toàn</span>
+            </div>
+            <div class="col-12 col-md-4 col-lg d-flex align-items-center justify-content-center gap-2">
+                <i class="bi bi-arrow-repeat text-orange fs-5"></i>
+                <span class="small fw-bold text-navy">Bảo hành 1 đổi 1 tận nơi</span>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container" id="product-list">
-    <!-- Danh mục Quick Links -->
-    <div class="mb-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="fw-bold mb-0"><i class="bi bi-grid-fill text-primary me-2"></i>Danh Mục Quần Áo</h4>
-            <a asp-action="Index" class="text-decoration-none fw-semibold small">Xem tất cả <i class="bi bi-arrow-right"></i></a>
-        </div>
-        <div class="row g-3">
-            @foreach (var cat in Model.Categories)
-            {
-                <div class="col-6 col-md-4 col-lg">
-                    <a asp-action="Index" asp-route-categoryId="@cat.CategoryId" class="text-decoration-none">
-                        <div class="card border-0 shadow-sm text-center p-3 h-100 product-card @(Model.SelectedCategoryId == cat.CategoryId ? "border border-primary border-2" : "")">
-                            <i class="bi bi-tag-fill text-primary fs-2 mb-2"></i>
-                            <h6 class="fw-bold text-dark mb-1">@cat.CategoryName</h6>
-                            <small class="text-muted">@cat.Products.Count sản phẩm</small>
-                        </div>
-                    </a>
-                </div>
-            }
-        </div>
-    </div>
-
-    <!-- Bộ lọc & Danh sách Sản phẩm -->
-    <div class="row g-4">
-        <!-- Sidebar Bộ Lọc -->
-        <div class="col-lg-3">
-            <div class="card border-0 shadow-sm p-4 rounded-3 sticky-top" style="top: 80px;">
-                <h5 class="fw-bold mb-3"><i class="bi bi-funnel me-2"></i>Bộ Lọc Tìm Kiếm</h5>
-                <form asp-action="Index" method="get">
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Từ khóa</label>
-                        <input type="text" name="keyword" value="@Model.SearchKeyword" class="form-control" placeholder="Tên áo, quần...">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Danh mục</label>
-                        <select name="categoryId" class="form-select">
-                            <option value="">-- Tất cả danh mục --</option>
-                            @foreach (var cat in Model.Categories)
-                            {
-                                <option value="@cat.CategoryId" selected="@(Model.SelectedCategoryId == cat.CategoryId ? "selected" : null)">@cat.CategoryName</option>
-                            }
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Khoảng giá (VNĐ)</label>
-                        <div class="input-group mb-2">
-                            <span class="input-group-text small">Từ</span>
-                            <input type="number" name="minPrice" value="@Model.MinPrice" class="form-control" placeholder="0">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text small">Đến</span>
-                            <input type="number" name="maxPrice" value="@Model.MaxPrice" class="form-control" placeholder="1.000.000">
-                        </div>
-                    </div>
-
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-dark fw-bold">
-                            <i class="bi bi-filter me-1"></i>Áp Dụng Lọc
-                        </button>
-                        <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
-                            <i class="bi bi-arrow-counterclockwise me-1"></i>Đặt lại
-                        </a>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Danh Sách Sản Phẩm -->
-        <div class="col-lg-9">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="fw-bold mb-0">
-                    <i class="bi bi-box-seam-fill text-danger me-2"></i>
-                    Tất Cả Sản Phẩm <span class="text-muted fs-6 fw-normal">(@Model.AllProducts.Count sản phẩm)</span>
-                </h4>
-            </div>
-
-            @if (Model.AllProducts.Any())
-            {
-                <div class="row g-4">
-                    @foreach (var product in Model.AllProducts)
-                    {
-                        <div class="col-md-6 col-xl-4">
-                            <div class="card h-100 border-0 shadow-sm product-card position-relative bg-white">
-                                @if (product.DiscountPercent > 0)
-                                {
-                                    <span class="badge bg-danger badge-sale rounded-pill px-3 py-2">
-                                        -@product.DiscountPercent%
-                                    </span>
-                                }
-                                <a asp-action="Details" asp-route-id="@product.ProductId">
-                                    <img src="@(string.IsNullOrEmpty(product.MainImage) ? "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" : product.MainImage)" 
-                                         class="card-img-top" 
-                                         alt="@product.ProductName" 
-                                         style="height: 260px; object-fit: cover;">
-                                </a>
-                                <div class="card-body d-flex flex-column p-3">
-                                    <div class="text-muted small mb-1">
-                                        <i class="bi bi-tag me-1"></i>@product.Category?.CategoryName
-                                    </div>
-                                    <h6 class="card-title fw-bold text-dark mb-2 text-truncate" title="@product.ProductName">
-                                        <a asp-action="Details" asp-route-id="@product.ProductId" class="text-dark text-decoration-none">
-                                            @product.ProductName
-                                        </a>
-                                    </h6>
-                                    
-                                    <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
-                                        <div>
-                                            <span class="fw-bold text-danger fs-5">@product.FinalPrice.ToString("N0") đ</span>
-                                            @if (product.DiscountPercent > 0)
-                                            {
-                                                <small class="text-decoration-line-through text-muted ms-1">@product.Price.ToString("N0") đ</small>
-                                            }
-                                        </div>
-                                        <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-outline-dark btn-sm rounded-pill px-3">
-                                            Chi tiết <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
+<!-- ================= 3. ABOUT FACTORY CAPABILITY BANNER ================= -->
+<section class="py-5 bg-sand bg-opacity-50" id="about-factory">
+    <div class="container">
+        <div class="bg-white rounded-4 p-4 p-lg-5 border border-sand shadow-sm">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-6">
+                    <span class="badge-brand-orange mb-2 d-inline-block">NĂNG LỰC SẢN XUẤT KHÉP KÍN</span>
+                    <h2 class="fw-bold text-navy mb-3">Quy trình dệt may &amp; in thêu công nghệ cao</h2>
+                    <p class="text-muted mb-4">
+                        Sở hữu dây chuyền cắt tự động, xưởng may 500+ máy may điện tử hiện đại cùng phân xưởng thêu vi tính Tajima Nhật Bản và in kỹ thuật số công nghệ cao, HUIT Uniform đảm bảo độ bền, sắc nét và tính thẩm mỹ cao nhất trên từng sản phẩm xuất xưởng.
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="bi bi-check-circle-fill text-orange fs-5 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold text-navy mb-1">Thiết kế mẫu 3D miễn phí</h6>
+                                    <small class="text-muted">Phối màu &amp; dựng demo logo trực quan</small>
                                 </div>
                             </div>
                         </div>
-                    }
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="bi bi-check-circle-fill text-orange fs-5 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold text-navy mb-1">May mẫu duyệt trước</h6>
+                                    <small class="text-muted">Khách hàng cầm tận tay duyệt vải thực tế</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="bi bi-check-circle-fill text-orange fs-5 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold text-navy mb-1">Thêu vi tính Tajima</h6>
+                                    <small class="text-muted">Đường thêu dày dặn, không xơ xước</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="bi bi-check-circle-fill text-orange fs-5 mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold text-navy mb-1">Kiểm định KCS nghiêm ngặt</h6>
+                                    <small class="text-muted">100% sản phẩm được cắt chỉ &amp; ủi phẳng</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500&auto=format&fit=crop&q=80" 
+                                 class="img-fluid rounded-3 shadow-sm w-100" style="height: 180px; object-fit: cover;" alt="Phân xưởng may hiện đại">
+                        </div>
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&auto=format&fit=crop&q=80" 
+                                 class="img-fluid rounded-3 shadow-sm w-100" style="height: 180px; object-fit: cover;" alt="Chất liệu vải cao cấp">
+                        </div>
+                        <div class="col-12">
+                            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80" 
+                                 class="img-fluid rounded-3 shadow-sm w-100" style="height: 160px; object-fit: cover;" alt="Đội ngũ nhân viên thanh lịch">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 4. FEATURED PRODUCTS & CATEGORIES ================= -->
+<section class="py-5" id="featured-products">
+    <div class="container">
+        <div class="text-center max-w-700 mx-auto mb-4">
+            <span class="badge-brand-orange mb-2 d-inline-block">BẢNG CHỌN MẪU THEO YÊU CẦU</span>
+            <h2 class="fw-bolder text-navy mb-2">Đồng phục cho mọi ngành nghề</h2>
+            <p class="text-muted">Từ văn phòng công sở, chuỗi nhà hàng khách sạn đến phân xưởng nhà máy xí nghiệp</p>
+        </div>
+
+        <!-- Category Tabs Filter -->
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            <a asp-action="Index" class="btn btn-sm @(!Model.SelectedCategoryId.HasValue ? "btn-brand-navy" : "btn-light border-sand text-navy") px-3 py-2 fw-semibold">
+                Tất cả sản phẩm
+            </a>
+            @foreach (var cat in Model.Categories)
+            {
+                <a asp-action="Index" asp-route-categoryId="@cat.CategoryId" 
+                   class="btn btn-sm @(Model.SelectedCategoryId == cat.CategoryId ? "btn-brand-navy" : "btn-light border-sand text-navy") px-3 py-2 fw-semibold">
+                    @cat.CategoryName
+                </a>
+            }
+        </div>
+
+        <!-- Product Grid -->
+        <div class="row g-4">
+            @if (Model.AllProducts.Any())
+            {
+                @foreach (var product in Model.AllProducts.Take(8))
+                {
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="figma-product-card">
+                            @if (product.DiscountPercent > 0)
+                            {
+                                <span class="discount-pill">-@product.DiscountPercent%</span>
+                            }
+
+                            <!-- Product Image Wrap -->
+                            <div class="card-img-wrap">
+                                <a asp-action="Details" asp-route-id="@product.ProductId">
+                                    <img src="@(string.IsNullOrEmpty(product.MainImage) ? "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" : product.MainImage)" 
+                                         alt="@product.ProductName" 
+                                         loading="lazy">
+                                </a>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="p-3 d-flex flex-column flex-grow-1">
+                                <span class="badge-brand-navy mb-2 align-self-start" style="font-size: 0.72rem;">
+                                    @(product.Category?.CategoryName ?? "Đồng phục")
+                                </span>
+                                
+                                <h6 class="fw-bold text-navy mb-1 text-truncate" title="@product.ProductName">
+                                    <a asp-action="Details" asp-route-id="@product.ProductId" class="text-navy text-decoration-none">
+                                        @product.ProductName
+                                    </a>
+                                </h6>
+                                
+                                <small class="text-muted mb-2 text-truncate" style="font-size: 0.8rem;">
+                                    Mã SP: @(product.ProductCode ?? "SP-" + product.ProductId) | Chất vải cao cấp
+                                </small>
+
+                                <!-- Pricing & Actions -->
+                                <div class="mt-auto pt-2 border-top border-sand d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="fw-bold text-orange fs-6">@product.FinalPrice.ToString("N0") đ</div>
+                                        @if (product.DiscountPercent > 0)
+                                        {
+                                            <small class="text-decoration-line-through text-muted" style="font-size: 0.75rem;">@product.Price.ToString("N0") đ</small>
+                                        }
+                                    </div>
+                                    <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-brand-outline-navy btn-sm px-2 py-1">
+                                        Chi tiết <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
             }
             else
             {
-                <div class="card border-0 shadow-sm p-5 text-center text-muted">
-                    <i class="bi bi-inbox fs-1 mb-2"></i>
-                    <h5>Không tìm thấy sản phẩm nào phù hợp!</h5>
-                    <p class="small">Vui lòng thử lại với từ khóa hoặc bộ lọc khác.</p>
-                    <div>
-                        <a asp-action="Index" class="btn btn-dark btn-sm">Xem tất cả sản phẩm</a>
-                    </div>
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted">Không tìm thấy sản phẩm phù hợp.</p>
+                    <a asp-action="Index" class="btn btn-brand-navy btn-sm">Xem tất cả sản phẩm</a>
                 </div>
             }
         </div>
+
+        <div class="text-center mt-5">
+            <a asp-action="Index" class="btn btn-brand-outline-navy px-4 py-2 fw-semibold">
+                Xem toàn bộ bộ sưu tập mẫu áo (@Model.AllProducts.Count sản phẩm) <i class="bi bi-chevron-right ms-1"></i>
+            </a>
+        </div>
     </div>
-</div>
+</section>
+
+<!-- ================= 5. NAVY HIGHLIGHT BANNER: SAFETY WEAR ================= -->
+<section class="py-5 bg-navy text-white my-4 position-relative overflow-hidden">
+    <div class="container py-3">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <span class="badge bg-orange text-white px-3 py-2 rounded-pill fw-bold text-uppercase mb-3 small">
+                    <i class="bi bi-shield-shaded me-1"></i> DÒNG SẢN PHẨM CHUYÊN DỤNG
+                </span>
+                <h2 class="display-6 fw-bold mb-3 text-white">
+                    Trang bị an toàn cho người lao động,<br />
+                    đạt chuẩn kiểm định an toàn
+                </h2>
+                <p class="text-white-50 mb-4" style="max-width: 580px;">
+                    Cung cấp quần áo bảo hộ chống cháy, áo phản quang kỹ sư 3M, mũ bảo hộ chịu lực, găng tay và giày bảo hộ mũi thép đạt chuẩn TCVN 2607-78 cho các công trình xây dựng, nhà máy sản xuất.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#contact-quote" class="btn btn-brand-orange px-4 py-2">
+                        <i class="bi bi-telephone-inbound-fill me-2"></i> Báo giá đồ bảo hộ
+                    </a>
+                    <a asp-action="Index" asp-route-categoryId="4" class="btn btn-outline-light px-4 py-2">
+                        Xem chi tiết danh mục bảo hộ
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-5">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="bg-navy-light p-3 rounded-3 border border-secondary border-opacity-25 text-center h-100">
+                            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&auto=format&fit=crop&q=80" 
+                                 class="img-fluid rounded-2 mb-2 w-100" style="height: 140px; object-fit: cover;" alt="Áo phản quang kỹ sư">
+                            <h6 class="fw-bold text-white small mb-1">Áo gile phản quang 3M</h6>
+                            <span class="text-orange small fw-bold">Chuẩn kiểm định</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="bg-navy-light p-3 rounded-3 border border-secondary border-opacity-25 text-center h-100">
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=500&auto=format&fit=crop&q=80" 
+                                 class="img-fluid rounded-2 mb-2 w-100" style="height: 140px; object-fit: cover;" alt="Mũ bảo hộ lao động">
+                            <h6 class="fw-bold text-white small mb-1">Mũ bảo hộ chống va đập</h6>
+                            <span class="text-orange small fw-bold">Nhập khẩu chính hãng</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 6. 5-STEP ORDERING PROCESS ================= -->
+<section class="py-5 bg-warm" id="steps-process">
+    <div class="container">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge-brand-orange mb-2 d-inline-block">QUY TRÌNH ĐẶT MAY MINH BẠCH</span>
+            <h2 class="fw-bolder text-navy mb-2">5 bước đặt may đồng phục đơn giản</h2>
+            <p class="text-muted">Tiết kiệm thời gian, hỗ trợ tận nơi và đảm bảo tiến độ chính xác từng ngày</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md col-sm-6">
+                <div class="step-item bg-white rounded-3 border border-sand h-100 shadow-sm">
+                    <div class="step-number">1</div>
+                    <h6 class="fw-bold text-navy mb-2">Tiếp nhận &amp; Tư vấn</h6>
+                    <p class="small text-muted mb-0">Lắng nghe nhu cầu, số lượng, tư vấn kiểu dáng và phối màu thương hiệu.</p>
+                </div>
+            </div>
+            <div class="col-md col-sm-6">
+                <div class="step-item bg-white rounded-3 border border-sand h-100 shadow-sm">
+                    <div class="step-number">2</div>
+                    <h6 class="fw-bold text-navy mb-2">Chọn vải &amp; Báo giá</h6>
+                    <p class="small text-muted mb-0">Gửi mẫu vải thực tế đến tận văn phòng và gửi bảng báo giá gốc tại xưởng.</p>
+                </div>
+            </div>
+            <div class="col-md col-sm-6">
+                <div class="step-item bg-white rounded-3 border border-sand h-100 shadow-sm">
+                    <div class="step-number">3</div>
+                    <h6 class="fw-bold text-navy mb-2">Thiết kế &amp; May mẫu</h6>
+                    <p class="small text-muted mb-0">Dựng bản vẽ 3D và may mẫu áo thật để doanh nghiệp trực tiếp duyệt vải &amp; form.</p>
+                </div>
+            </div>
+            <div class="col-md col-sm-6">
+                <div class="step-item bg-white rounded-3 border border-sand h-100 shadow-sm">
+                    <div class="step-number">4</div>
+                    <h6 class="fw-bold text-navy mb-2">Sản xuất hàng loạt</h6>
+                    <p class="small text-muted mb-0">Tiến hành cắt may, in thêu vi tính trên dây chuyền tự động hiện đại.</p>
+                </div>
+            </div>
+            <div class="col-md col-sm-6">
+                <div class="step-item bg-white rounded-3 border border-sand h-100 shadow-sm">
+                    <div class="step-number">5</div>
+                    <h6 class="fw-bold text-navy mb-2">KCS &amp; Giao hàng</h6>
+                    <p class="small text-muted mb-0">Kiểm tra từng đường chỉ, đóng gói theo size và giao hàng miễn phí tận nơi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 7. WHY CHOOSE US ================= -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge-brand-orange mb-2 d-inline-block">CAM KẾT TỪ HUIT UNIFORM</span>
+            <h2 class="fw-bolder text-navy mb-2">Vì sao doanh nghiệp chọn chúng tôi?</h2>
+            <p class="text-muted">Chúng tôi tự hào là đối tác may đồng phục tin cậy của hơn 1,500 tổ chức, tập đoàn</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-box">
+                    <div class="feature-icon-circle">
+                        <i class="bi bi-tags-fill"></i>
+                    </div>
+                    <h5 class="fw-bold text-navy mb-2">Giá gốc tại xưởng</h5>
+                    <p class="text-muted small mb-0">
+                        Sản xuất trực tiếp không qua trung gian, giúp doanh nghiệp tiết kiệm từ 15% - 25% tổng chi phí may mặc.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-box">
+                    <div class="feature-icon-circle">
+                        <i class="bi bi-gem"></i>
+                    </div>
+                    <h5 class="fw-bold text-navy mb-2">Vải bền đẹp, không xù</h5>
+                    <p class="text-muted small mb-0">
+                        Chất liệu vải cao cấp nhập chính hãng, độ co giãn tốt, thấm hút mồ hôi tối đa và không biến dạng qua các lần giặt.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-box">
+                    <div class="feature-icon-circle">
+                        <i class="bi bi-stopwatch-fill"></i>
+                    </div>
+                    <h5 class="fw-bold text-navy mb-2">Đúng hẹn tiến độ</h5>
+                    <p class="text-muted small mb-0">
+                        Quy trình quản trị xưởng chặt chẽ, cam kết bồi thường hợp đồng nếu bàn giao trễ ngày sự kiện hoặc khai trương.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="feature-box">
+                    <div class="feature-icon-circle">
+                        <i class="bi bi-shield-fill-exclamation"></i>
+                    </div>
+                    <h5 class="fw-bold text-navy mb-2">Bảo hành 1 đổi 1</h5>
+                    <p class="text-muted small mb-0">
+                        Cam kết đổi mới 100% mọi sản phẩm nếu có lỗi kỹ thuật về đường chỉ, cúc áo, lệch form hoặc bong tróc in thêu.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 8. PRICING PACKAGES FOR ALL SIZES ================= -->
+<section class="py-5 bg-warm" id="pricing-packages">
+    <div class="container">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge-brand-orange mb-2 d-inline-block">GIẢI PHÁP TỐI ƯU NGÂN SÁCH</span>
+            <h2 class="fw-bolder text-navy mb-2">Gói dịch vụ may đồng phục cho mọi quy mô</h2>
+            <p class="text-muted">Linh hoạt theo số lượng nhân sự từ cửa hàng nhỏ đến chuỗi doanh nghiệp hàng nghìn người</p>
+        </div>
+
+        <div class="row g-4 align-items-stretch">
+            <!-- Package 1: Khởi nghiệp -->
+            <div class="col-lg-4">
+                <div class="pricing-card">
+                    <span class="badge-brand-navy mb-3 align-self-start">Gói Khởi Nghiệp</span>
+                    <h3 class="fw-bold text-navy mb-1">95.000 đ <span class="fs-6 text-muted fw-normal">/ áo</span></h3>
+                    <p class="small text-muted mb-3">Dành cho startup, quán cafe, cửa hàng từ 20 - 50 áo</p>
+                    <hr class="border-sand my-3" />
+                    <ul class="list-unstyled small d-flex flex-column gap-2 mb-4 text-muted">
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Chất liệu Cotton 65/35 co giãn 4 chiều</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> In lụa sắc nét logo 2 vị trí (ngực + lưng)</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Miễn phí thiết kế bản vẽ demo 2D</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Thời gian sản xuất: 5 - 7 ngày làm việc</li>
+                        <li class="text-black-50 text-decoration-line-through"><i class="bi bi-x me-2"></i> Miễn phí may mẫu thật trước sản xuất</li>
+                    </ul>
+                    <a href="#contact-quote" class="btn btn-brand-outline-navy w-100 mt-auto">Chọn gói này</a>
+                </div>
+            </div>
+
+            <!-- Package 2: Tiêu chuẩn (Featured) -->
+            <div class="col-lg-4">
+                <div class="pricing-card featured">
+                    <span class="badge-popular">Phổ biến nhất</span>
+                    <span class="badge-brand-orange mb-3 align-self-start">Gói Doanh Nghiệp Tiêu Chuẩn</span>
+                    <h3 class="fw-bold text-navy mb-1">145.000 đ <span class="fs-6 text-muted fw-normal">/ áo</span></h3>
+                    <p class="small text-muted mb-3">Dành cho công ty, sự kiện, nhà hàng từ 50 - 200 bộ</p>
+                    <hr class="border-sand my-3" />
+                    <ul class="list-unstyled small d-flex flex-column gap-2 mb-4 text-muted">
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Vải Cá Sấu Cotton / Kate Ý chống nhăn cao cấp</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Thêu vi tính Tajima sắc nét logo ngực</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> May 01 áo mẫu thực tế để sờ vải duyệt trước</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Đóng gói túi zip từng áo theo mã size nhân viên</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Miễn phí giao hàng nội thành TP.HCM</li>
+                    </ul>
+                    <a href="#contact-quote" class="btn btn-brand-orange w-100 mt-auto">Đăng ký tư vấn gói này</a>
+                </div>
+            </div>
+
+            <!-- Package 3: Cao cấp -->
+            <div class="col-lg-4">
+                <div class="pricing-card">
+                    <span class="badge-brand-navy mb-3 align-self-start">Gói Tập Đoàn Cao Cấp</span>
+                    <h3 class="fw-bold text-navy mb-1">Liên hệ <span class="fs-6 text-muted fw-normal">/ giá xưởng tốt nhất</span></h3>
+                    <p class="small text-muted mb-3">Dành cho tổng công ty, khu công nghiệp từ 200 bộ trở lên</p>
+                    <hr class="border-sand my-3" />
+                    <ul class="list-unstyled small d-flex flex-column gap-2 mb-4 text-muted">
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Dệt và nhuộm màu vải độc quyền theo Pantone</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Đạt chuẩn an toàn TCVN / Chống tĩnh điện / Chống UV</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Đội ngũ kỹ thuật đến tận nơi đo thông số size</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Chia kiện và giao hàng theo danh sách chi nhánh</li>
+                        <li><i class="bi bi-check2 text-orange me-2 fw-bold"></i> Hợp đồng pháp lý đầy đủ, chiết khấu lên đến 20%</li>
+                    </ul>
+                    <a href="#contact-quote" class="btn btn-brand-outline-navy w-100 mt-auto">Yêu cầu bảng báo giá lớn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 9. REAL CLIENT PHOTOS & STATS ================= -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center max-w-700 mx-auto mb-4">
+            <span class="badge-brand-orange mb-2 d-inline-block">HÌNH ẢNH THỰC TẾ</span>
+            <h2 class="fw-bolder text-navy mb-2">Khách hàng tin cậy của HUIT Uniform</h2>
+            <p class="text-muted">Các dự án đồng phục thực tế đã bàn giao cho các thương hiệu trên toàn quốc</p>
+        </div>
+
+        <div class="row g-3 mb-5">
+            <div class="col-6 col-md-3">
+                <div class="rounded-3 overflow-hidden shadow-sm border border-sand">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=80" 
+                         class="img-fluid w-100" style="height: 220px; object-fit: cover;" alt="Đồng phục văn phòng công sở">
+                    <div class="p-2 text-center bg-warm">
+                        <small class="fw-bold text-navy">Khối Công Sở Doanh Nghiệp</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="rounded-3 overflow-hidden shadow-sm border border-sand">
+                    <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=500&auto=format&fit=crop&q=80" 
+                         class="img-fluid w-100" style="height: 220px; object-fit: cover;" alt="Đồng phục nhà hàng cafe">
+                    <div class="p-2 text-center bg-warm">
+                        <small class="fw-bold text-navy">Chuỗi Cafe &amp; Nhà Hàng</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="rounded-3 overflow-hidden shadow-sm border border-sand">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&auto=format&fit=crop&q=80" 
+                         class="img-fluid w-100" style="height: 220px; object-fit: cover;" alt="Bảo hộ lao động công trình">
+                    <div class="p-2 text-center bg-warm">
+                        <small class="fw-bold text-navy">Đồ Bảo Hộ Xây Dựng</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="rounded-3 overflow-hidden shadow-sm border border-sand">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&auto=format&fit=crop&q=80" 
+                         class="img-fluid w-100" style="height: 220px; object-fit: cover;" alt="Áo thun polo sự kiện">
+                    <div class="p-2 text-center bg-warm">
+                        <small class="fw-bold text-navy">Áo Polo Team Building</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Numbers Counter Banner -->
+        <div class="stats-counter-banner">
+            <div class="row g-4 text-center">
+                <div class="col-6 col-md-3">
+                    <div class="display-5 fw-bold text-orange mb-1">1,500+</div>
+                    <div class="text-white-50 small text-uppercase fw-semibold">Doanh nghiệp đồng hành</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="display-5 fw-bold text-orange mb-1">68,000+</div>
+                    <div class="text-white-50 small text-uppercase fw-semibold">Bộ quần áo mỗi tháng</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="display-5 fw-bold text-orange mb-1">98%</div>
+                    <div class="text-white-50 small text-uppercase fw-semibold">Khách hàng hài lòng</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="display-5 fw-bold text-orange mb-1">12</div>
+                    <div class="text-white-50 small text-uppercase fw-semibold">Năm uy tín trên thị trường</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 10. TESTIMONIALS ================= -->
+<section class="py-5 bg-warm">
+    <div class="container">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge-brand-orange mb-2 d-inline-block">ĐÁNH GIÁ CHẤT LƯỢNG</span>
+            <h2 class="fw-bolder text-navy mb-2">Doanh nghiệp nói gì về chúng tôi?</h2>
+            <p class="text-muted">Ý kiến phản hồi chân thực từ các khách hàng đã đặt may đồng phục tại xưởng</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <div class="text-warning mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="text-muted small mb-4 fst-italic">
+                        "Xưởng may làm việc rất có tâm. Đơn hàng 300 áo polo cho sự kiện kỷ niệm của công ty chúng tôi được giao trước hạn 2 ngày. Form áo chuẩn, vải mát và logo thêu sắc nét từng chi tiết nhỏ."
+                    </p>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-navy text-white rounded-circle p-2 fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                            HQ
+                        </div>
+                        <div>
+                            <h6 class="fw-bold text-navy mb-0">Trần Hoàng Quang</h6>
+                            <small class="text-muted">Giám đốc Vận hành - TechLogistics</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <div class="text-warning mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="text-muted small mb-4 fst-italic">
+                        "Đã đặt may tạp dề và áo thun cho chuỗi 8 chi nhánh cafe của mình tại HUIT Uniform. Giặt máy công nghiệp liên tục mà màu vải không bị xỉn, đường chỉ rất chắc chắn. Giá gốc tại xưởng rất hợp lý."
+                    </p>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-orange text-white rounded-circle p-2 fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                            TT
+                        </div>
+                        <div>
+                            <h6 class="fw-bold text-navy mb-0">Nguyễn Thùy Trang</h6>
+                            <small class="text-muted">Founder &amp; CEO - The Morning Coffee</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="testimonial-card">
+                    <div class="text-warning mb-3">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                    </div>
+                    <p class="text-muted small mb-4 fst-italic">
+                        "Các mẫu áo bảo hộ kỹ sư và gile phản quang của xưởng đáp ứng chuẩn chỉ mọi quy định nghiệm thu an toàn lao động của tổng thầu. Dải phản quang ban đêm bắt sáng cực nhạy, độ bền vải rất tốt."
+                    </p>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-navy text-white rounded-circle p-2 fw-bold d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                            LM
+                        </div>
+                        <div>
+                            <h6 class="fw-bold text-navy mb-0">Lê Minh Tuấn</h6>
+                            <small class="text-muted">Chỉ huy trưởng - An Phát Construction</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 11. FABRIC KNOWLEDGE & BLOG ================= -->
+<section class="py-5 bg-white" id="fabric-guide">
+    <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-4">
+            <div>
+                <span class="badge-brand-orange mb-2 d-inline-block">KIẾN THỨC CHUYÊN NGÀNH</span>
+                <h2 class="fw-bolder text-navy mb-0">Cẩm nang chọn vải &amp; May mặc</h2>
+            </div>
+            <a href="#contact-quote" class="text-decoration-none fw-semibold text-navy small">Xem tất cả bài viết <i class="bi bi-arrow-right"></i></a>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&auto=format&fit=crop&q=80" alt="Bí quyết chọn vải áo thun">
+                    <div class="p-3">
+                        <span class="text-muted small d-block mb-1"><i class="bi bi-calendar3 me-1"></i> 18/09/2026</span>
+                        <h6 class="fw-bold text-navy mb-2">So sánh vải Cotton 100%, CVC và Poly cá sấu</h6>
+                        <p class="text-muted small mb-0">Phân tích ưu nhược điểm từng dòng vải để chọn đúng chất liệu cho áo thun sự kiện...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500&auto=format&fit=crop&q=80" alt="Chọn vải sơ mi công sở">
+                    <div class="p-3">
+                        <span class="text-muted small d-block mb-1"><i class="bi bi-calendar3 me-1"></i> 15/09/2026</span>
+                        <h6 class="fw-bold text-navy mb-2">Vải may sơ mi công sở: Kate Ý hay Kate Mỹ?</h6>
+                        <p class="text-muted small mb-0">Đặc tính chống nhăn, độ bóng tự nhiên và độ thoáng khí của các loại vải sơ mi cao cấp...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&auto=format&fit=crop&q=80" alt="Tiêu chuẩn an toàn đồ bảo hộ">
+                    <div class="p-3">
+                        <span class="text-muted small d-block mb-1"><i class="bi bi-calendar3 me-1"></i> 10/09/2026</span>
+                        <h6 class="fw-bold text-navy mb-2">Tiêu chuẩn quốc gia TCVN về trang phục bảo hộ</h6>
+                        <p class="text-muted small mb-0">Quy định về độ bắt sáng phản quang, độ bền kéo đứt và khả năng chống tĩnh điện tại công trường...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=500&auto=format&fit=crop&q=80" alt="Bảo quản đồng phục">
+                    <div class="p-3">
+                        <span class="text-muted small d-block mb-1"><i class="bi bi-calendar3 me-1"></i> 05/09/2026</span>
+                        <h6 class="fw-bold text-navy mb-2">Cách giặt &amp; bảo quản đồng phục thêu logo</h6>
+                        <p class="text-muted small mb-0">Mẹo đơn giản giúp giữ màu vải luôn tươi sáng và đường chỉ thêu bền đẹp như mới sau 2 năm...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 12. CALL TO ACTION BANNER (ORANGE) ================= -->
+<section class="py-4">
+    <div class="container">
+        <div class="cta-banner-orange d-flex flex-wrap align-items-center justify-content-between gap-4">
+            <div>
+                <h3 class="fw-bold mb-2">Bạn có nhu cầu may đồng phục riêng cho doanh nghiệp?</h3>
+                <p class="mb-0 text-white-50">Nhận ngay mẫu vải thực tế, bản vẽ demo phối màu 3D và báo giá chi tiết hoàn toàn miễn phí.</p>
+            </div>
+            <a href="#contact-quote" class="btn btn-navy text-white px-4 py-3 fw-bold shadow">
+                <i class="bi bi-telephone-outbound-fill me-2 text-orange"></i> Nhận tư vấn ngay
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= 13. CONTACT & QUOTATION FORM WITH MAP ================= -->
+<section class="py-5 bg-navy text-white" id="contact-quote">
+    <div class="container">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge bg-orange text-white px-3 py-2 rounded-pill fw-bold text-uppercase mb-2 small">
+                LIÊN HỆ TRỰC TIẾP XƯỞNG MAY
+            </span>
+            <h2 class="display-6 fw-bold mb-2 text-white">Nhận tư vấn &amp; Báo giá dành riêng cho doanh nghiệp</h2>
+            <p class="text-white-50">Để lại thông tin, đội ngũ chuyên viên của xưởng sẽ liên hệ lại báo giá trong vòng 15 phút</p>
+        </div>
+
+        <div class="row g-4 align-items-center">
+            <!-- Left Info & Map -->
+            <div class="col-lg-5">
+                <div class="bg-navy-light p-4 rounded-4 border border-secondary border-opacity-25 mb-4">
+                    <h5 class="fw-bold text-orange mb-3"><i class="bi bi-buildings me-2"></i> Thông Tin Xưởng Sản Xuất</h5>
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                        <i class="bi bi-geo-alt-fill text-orange fs-5 mt-1"></i>
+                        <div>
+                            <strong>Địa chỉ xưởng:</strong>
+                            <p class="text-white-50 small mb-0">140 Lê Trọng Tấn, P. Tây Thạnh, Q. Tân Phú, TP. Hồ Chí Minh</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-3 mb-3">
+                        <i class="bi bi-telephone-fill text-orange fs-5 mt-1"></i>
+                        <div>
+                            <strong>Hotline tư vấn báo giá:</strong>
+                            <p class="text-white-50 small mb-0">028 3816 1673 - 0909 123 456 (Zalo 24/7)</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-3">
+                        <i class="bi bi-envelope-fill text-orange fs-5 mt-1"></i>
+                        <div>
+                            <strong>Email tiếp nhận hồ sơ thầu:</strong>
+                            <p class="text-white-50 small mb-0">dongphuc@huit.edu.vn</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps Embed Representation -->
+                <div class="rounded-4 overflow-hidden border border-secondary border-opacity-25 shadow-sm" style="height: 220px;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.060291410183!2d106.6263704748053!3d10.806694389344078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752be27d8b4f4d%3A0x92dcba2950430867!2zMTQwIEzDqiBUcuG7jW5nIFThuqVuLCBUw6J5IFRo4bqhbmgSwgVMOibiBQaMO6LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1711200000000!5m2!1svi!2s" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- Right Quote Form -->
+            <div class="col-lg-7">
+                <div class="bg-white text-navy p-4 p-lg-5 rounded-4 shadow-lg border border-sand">
+                    <h4 class="fw-bold mb-3 text-navy">Gửi Yêu Cầu Báo Giá Nhanh</h4>
+                    <p class="small text-muted mb-4">Điền thông tin bên dưới để nhận bảng báo giá chi tiết và catalogue chất liệu vải tận nơi.</p>
+                    
+                    <form onsubmit="event.preventDefault(); alert('Cảm ơn quý khách! Chuyên viên của Xưởng may HUIT Uniform sẽ liên hệ lại trong vòng 15 phút.');">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-navy">Họ và tên người liên hệ <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control border-sand bg-warm" placeholder="Nguyễn Văn A" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-navy">Số điện thoại / Zalo <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control border-sand bg-warm" placeholder="0909 xxx xxx" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-navy">Email nhận báo giá</label>
+                                <input type="email" class="form-control border-sand bg-warm" placeholder="email@congty.com">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-navy">Số lượng áo dự kiến</label>
+                                <select class="form-select border-sand bg-warm">
+                                    <option value="20-50">20 - 50 áo (Gói Khởi nghiệp)</option>
+                                    <option value="50-100" selected>50 - 100 áo (Tiêu chuẩn)</option>
+                                    <option value="100-300">100 - 300 áo</option>
+                                    <option value="300+">Trên 300 áo (Số lượng lớn)</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-navy">Loại đồng phục cần may</label>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="cb1" checked>
+                                        <label class="form-check-label small" for="cb1">Áo thun Polo</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="cb2">
+                                        <label class="form-check-label small" for="cb2">Sơ mi công sở</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="cb3">
+                                        <label class="form-check-label small" for="cb3">Đồ bảo hộ lao động</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="cb4">
+                                        <label class="form-check-label small" for="cb4">Đồng phục Nhà hàng - Cafe</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-navy">Ghi chú chi tiết (màu sắc, in thêu logo, ngày cần hàng...)</label>
+                                <textarea class="form-control border-sand bg-warm" rows="3" placeholder="Nhập yêu cầu cụ thể của quý công ty..."></textarea>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-brand-orange btn-lg w-100 fw-bold shadow-sm">
+                                    <i class="bi bi-send-check-fill me-2"></i> Gửi yêu cầu báo giá ngay
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

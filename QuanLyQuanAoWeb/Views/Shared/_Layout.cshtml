@@ -3,109 +3,124 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HUIT Fashion Shop</title>
+    <title>@ViewData["Title"] - HUIT Uniform & Workwear</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8f9fa;
-            color: #212529;
-        }
-        .navbar-brand {
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-        .badge-sale {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 2;
-        }
-        .product-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
-        }
-    </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <!-- Top Announcement Bar -->
-    <div class="bg-dark text-white py-1 px-3 text-center small">
-        <span><i class="bi bi-truck me-1"></i> Miễn phí vận chuyển toàn quốc cho đơn hàng từ 500.000đ | Hotline: <strong>028 3816 1673</strong></span>
+    <div class="bg-navy text-white py-2 small border-bottom border-secondary border-opacity-25">
+        <div class="container-fluid px-lg-5 d-flex flex-wrap justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-3">
+                <span><i class="bi bi-geo-alt-fill text-orange me-1"></i> 140 Lê Trọng Tấn, P. Tây Thạnh, Q. Tân Phú, TP.HCM</span>
+                <span class="d-none d-md-inline text-white-50">|</span>
+                <span class="d-none d-md-inline"><i class="bi bi-clock-fill text-orange me-1"></i> Thứ 2 - Thứ 7: 8:00 - 18:00</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="tel:02838161673" class="text-white text-decoration-none fw-semibold">
+                    <i class="bi bi-telephone-fill text-orange me-1"></i> Hotline: 028 3816 1673
+                </a>
+                <span class="text-white-50">|</span>
+                <a href="#contact-quote" class="text-white text-decoration-none">
+                    <i class="bi bi-envelope-check-fill text-orange me-1"></i> dongphuc@huit.edu.vn
+                </a>
+            </div>
+        </div>
     </div>
 
-    <!-- Main Navigation -->
+    <!-- Main Navigation Header -->
     <header class="sticky-top bg-white border-bottom shadow-sm">
-        <nav class="navbar navbar-expand-lg navbar-light py-2">
-            <div class="container">
-                <a class="navbar-brand text-dark fs-3" asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-bag-heart-fill text-danger me-1"></i>HUIT<span class="text-secondary fw-normal">FASHION</span>
+        <nav class="navbar navbar-expand-xl navbar-light py-2">
+            <div class="container-fluid px-lg-5">
+                <!-- Brand Logo -->
+                <a class="navbar-brand d-flex align-items-center text-decoration-none me-3" asp-area="" asp-controller="Home" asp-action="Index">
+                    <div class="bg-navy text-white rounded-3 p-2 me-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                        <i class="bi bi-shield-check text-orange fs-4"></i>
+                    </div>
+                    <div>
+                        <div class="fw-bolder fs-4 lh-1 text-navy">HUIT<span class="text-orange">UNIFORM</span></div>
+                        <small class="text-muted d-block" style="font-size: 0.68rem; letter-spacing: 0.5px; text-transform: uppercase;">Xưởng May Đồng Phục &amp; Đồ Bảo Hộ</small>
+                    </div>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <div class="collapse navbar-collapse" id="navbarMainContent">
+                    <!-- Nav Links -->
+                    <ul class="navbar-nav mx-auto mb-2 mb-xl-0">
                         <li class="nav-item">
-                            <a class="nav-link text-dark fw-semibold" asp-area="" asp-controller="Home" asp-action="Index">
-                                <i class="bi bi-house-door me-1"></i>Trang Chủ
+                            <a class="nav-link text-navy fw-semibold" asp-area="" asp-controller="Home" asp-action="Index">
+                                Trang Chủ
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Sản Phẩm Mới</a>
+                            <a class="nav-link text-navy fw-semibold" href="#featured-products">
+                                Mẫu Áo Nổi Bật
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-danger fw-semibold" asp-area="" asp-controller="Home" asp-action="Index">
-                                <i class="bi bi-fire me-1"></i>Khuyến Mãi
+                            <a class="nav-link text-navy fw-semibold" href="#steps-process">
+                                Quy Trình May
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-navy fw-semibold" href="#pricing-packages">
+                                Gói Báo Giá
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-navy fw-semibold" href="#fabric-guide">
+                                Cẩm Nang Vải
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-navy fw-semibold" href="#contact-quote">
+                                Liên Hệ
                             </a>
                         </li>
                     </ul>
 
-                    <!-- Search Form -->
-                    <form class="d-flex me-3 my-2 my-lg-0" asp-area="" asp-controller="Home" asp-action="Index" method="get">
-                        <div class="input-group">
-                            <input class="form-control" type="search" name="keyword" placeholder="Tìm quần áo, mã SP..." aria-label="Search" style="min-width: 220px;">
-                            <button class="btn btn-outline-dark" type="submit"><i class="bi bi-search"></i></button>
-                        </div>
-                    </form>
+                    <!-- Cart & User Actions -->
+                    <div class="d-flex align-items-center gap-2">
+                        <!-- Compact Search Form -->
+                        <form class="d-none d-xxl-block me-1" asp-area="" asp-controller="Home" asp-action="Index" method="get">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control border-sand bg-warm" type="search" name="keyword" placeholder="Tìm mẫu áo..." style="width: 130px; font-size: 0.85rem;">
+                                <button class="btn btn-outline-secondary border-sand bg-white text-navy" type="submit"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
 
-                    <!-- Cart Button -->
-                    <a class="btn btn-outline-dark btn-sm me-3 position-relative px-3 fw-semibold" asp-area="" asp-controller="Cart" asp-action="Index">
-                        <i class="bi bi-cart3 me-1"></i>Giỏ Hàng
-                    </a>
+                        <!-- Shopping Cart -->
+                        <a class="btn btn-brand-outline-navy btn-sm px-3 py-2 d-flex align-items-center" asp-area="" asp-controller="Cart" asp-action="Index" title="Giỏ hàng">
+                            <i class="bi bi-cart3"></i>
+                            <span class="ms-1 small fw-bold">Giỏ Hàng</span>
+                        </a>
 
-                    <!-- User Account / Cart -->
-                    <ul class="navbar-nav align-items-center">
+                        <!-- User Profile / Login -->
                         @if (User.Identity?.IsAuthenticated == true)
                         {
                             @if (User.IsInRole("Admin") || User.IsInRole("Staff"))
                             {
-                                <li class="nav-item me-2">
-                                    <a class="btn btn-danger btn-sm text-white fw-bold px-3" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
-                                        <i class="bi bi-speedometer2 me-1"></i>Trang Quản Trị
-                                    </a>
-                                </li>
-                            }
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-dark fw-bold d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i class="bi bi-person-circle fs-5 me-1 text-primary"></i>
-                                    <span>@User.FindFirst("FullName")?.Value</span>
+                                <a class="btn btn-brand-navy btn-sm px-3 py-2 fw-semibold" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                                    <i class="bi bi-speedometer2 me-1 text-orange"></i> Quản Trị
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                                    <li class="px-3 py-1 small text-muted">Quyền: <strong>@User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</strong></li>
+                            }
+                            <div class="dropdown">
+                                <button class="btn btn-light border-sand dropdown-toggle d-flex align-items-center fw-semibold py-2 px-3 btn-sm" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle me-1 text-navy"></i>
+                                    <span>@User.FindFirst("FullName")?.Value</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm border-sand">
+                                    <li class="px-3 py-1 small text-muted">Quyền: <strong class="text-orange">@User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</strong></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
-                                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
                                             @Html.AntiForgeryToken()
                                             <button type="submit" class="dropdown-item text-danger">
                                                 <i class="bi bi-box-arrow-right me-2"></i>Đăng xuất
@@ -113,76 +128,121 @@
                                         </form>
                                     </li>
                                 </ul>
-                            </li>
+                            </div>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="btn btn-outline-dark btn-sm me-2 fw-semibold px-3" asp-area="" asp-controller="Account" asp-action="Login">
-                                    <i class="bi bi-box-arrow-in-right me-1"></i>Đăng nhập
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-dark btn-sm fw-semibold px-3" asp-area="" asp-controller="Account" asp-action="Register">
-                                    <i class="bi bi-person-plus me-1"></i>Đăng ký
-                                </a>
-                            </li>
+                            <a class="btn btn-light border-sand fw-semibold px-3 py-2 text-navy btn-sm" asp-area="" asp-controller="Account" asp-action="Login">
+                                <i class="bi bi-person me-1"></i> Đăng nhập
+                            </a>
                         }
-                    </ul>
+
+                        <!-- Orange CTA Request Quote -->
+                        <a href="#contact-quote" class="btn btn-brand-orange btn-sm px-3 py-2">
+                            <i class="bi bi-file-earmark-text me-1"></i> Báo giá
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Main Body Container -->
-    <div class="flex-grow-1">
+    <main class="flex-grow-1">
         @RenderBody()
-    </div>
+    </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
-        <div class="container">
-            <div class="row g-4">
+    <!-- Comprehensive Figma Footer -->
+    <footer class="figma-footer pt-5 pb-3 mt-5">
+        <div class="container pb-4">
+            <div class="row g-4 justify-content-between">
+                <!-- Col 1: Logo & Company Info -->
                 <div class="col-lg-4 col-md-6">
-                    <h5 class="fw-bold mb-3"><i class="bi bi-bag-heart-fill text-danger me-2"></i>HUIT FASHION</h5>
-                    <p class="text-light small">
-                        Hệ thống Website Quản Lý & Kinh Doanh Quần Áo Thời Trang. Đồ án môn học Lập trình Web - Trường Đại học Công Thương TP. Hồ Chí Minh.
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-navy-light text-white rounded-3 p-2 me-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
+                            <i class="bi bi-shield-check text-orange fs-4"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bolder fs-4 lh-1 text-white">HUIT<span class="text-orange">UNIFORM</span></div>
+                            <small class="text-secondary" style="font-size: 0.72rem; letter-spacing: 0.5px; text-transform: uppercase;">Xưởng May Đồng Phục Doanh Nghiệp</small>
+                        </div>
+                    </div>
+                    <p class="small text-white-50 mb-3">
+                        Chuyên sản xuất và cung ứng đồng phục doanh nghiệp, áo polo công sở, đồng phục nhà hàng, đồ bảo hộ lao động đạt chuẩn kiểm định an toàn kỹ thuật TCVN.
                     </p>
-                    <p class="text-light small mb-1"><i class="bi bi-geo-alt me-2 text-danger"></i>140 Lê Trọng Tấn, P. Tây Thạnh, Q. Tân Phú, TP.HCM</p>
-                    <p class="text-light small mb-1"><i class="bi bi-telephone me-2 text-danger"></i>028 3816 1673</p>
-                    <p class="text-light small"><i class="bi bi-envelope me-2 text-danger"></i>huitfashion@shopquanao.vn</p>
+                    <div class="small text-white-50 mb-2">
+                        <i class="bi bi-geo-alt-fill text-orange me-2"></i> 140 Lê Trọng Tấn, P. Tây Thạnh, Q. Tân Phú, TP.HCM
+                    </div>
+                    <div class="small text-white-50 mb-2">
+                        <i class="bi bi-telephone-fill text-orange me-2"></i> Hotline đặt may: <strong>028 3816 1673</strong>
+                    </div>
+                    <div class="small text-white-50 mb-3">
+                        <i class="bi bi-envelope-fill text-orange me-2"></i> Email: <strong>dongphuc@huit.edu.vn</strong>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <span class="badge bg-navy-light border border-secondary border-opacity-25 px-2 py-1"><i class="bi bi-check-circle-fill text-orange me-1"></i> ISO 9001:2015</span>
+                        <span class="badge bg-navy-light border border-secondary border-opacity-25 px-2 py-1"><i class="bi bi-shield-fill-check text-orange me-1"></i> Chuẩn TCVN</span>
+                    </div>
                 </div>
+
+                <!-- Col 2: Danh Mục Sản Phẩm -->
                 <div class="col-lg-2 col-md-6">
-                    <h6 class="fw-bold text-uppercase mb-3">Danh Mục</h6>
-                    <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Áo thun & Polo</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Áo sơ mi Oxford</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Quần Jean Slimfit</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Quần Tây Âu</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Áo khoác gió</a></li>
+                    <h6>DANH MỤC SẢN PHẨM</h6>
+                    <ul class="list-unstyled small mb-0 d-flex flex-column gap-2">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Đồng phục công sở</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Áo thun Polo sự kiện</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Đồ bảo hộ & Áo phản quang</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Đồng phục Nhà hàng - Cafe</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Nón & Mũ bảo hộ lao động</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Giày bảo hộ chống đinh</a></li>
                     </ul>
                 </div>
+
+                <!-- Col 3: Về Chúng Tôi & Dịch Vụ -->
                 <div class="col-lg-3 col-md-6">
-                    <h6 class="fw-bold text-uppercase mb-3">Thành Viên Dự Án (Nhóm 4)</h6>
-                    <ul class="list-unstyled small text-light">
-                        <li class="mb-1"><span class="badge bg-primary me-1">Người 1</span> Database & Backend Nền tảng</li>
-                        <li class="mb-1"><span class="badge bg-info text-dark me-1">Người 2</span> Figma & Frontend Layout</li>
-                        <li class="mb-1"><span class="badge bg-success me-1">Người 3</span> Khách hàng & Đơn hàng + Word</li>
-                        <li class="mb-1"><span class="badge bg-warning text-dark me-1">Người 4</span> Sản phẩm & Kho + PPT</li>
+                    <h6>VỀ CHÚNG TÔI & DỊCH VỤ</h6>
+                    <ul class="list-unstyled small mb-0 d-flex flex-column gap-2">
+                        <li><a href="#about-factory">Giới thiệu năng lực xưởng may</a></li>
+                        <li><a href="#steps-process">Quy trình đặt may 5 bước</a></li>
+                        <li><a href="#pricing-packages">Gói dịch vụ cho doanh nghiệp</a></li>
+                        <li><a href="#fabric-guide">Bảng tra cứu chất liệu vải</a></li>
+                        <li><a href="#contact-quote">Chính sách bảo hành 1 đổi 1</a></li>
+                        <li><a href="#contact-quote">Hồ sơ năng lực (Profile PDF)</a></li>
                     </ul>
                 </div>
+
+                <!-- Col 4: Đăng Ký Nhận Mẫu Vải -->
                 <div class="col-lg-3 col-md-6">
-                    <h6 class="fw-bold text-uppercase mb-3">Chính Sách Bán Hàng</h6>
-                    <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Chính sách đổi trả trong 7 ngày</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Bảo hành đường chỉ trọn đời</a></li>
-                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Hướng dẫn chọn size quần áo</a></li>
-                    </ul>
+                    <h6>NHẬN MẪU VẢI MIỄN PHÍ</h6>
+                    <p class="small text-white-50 mb-3">
+                        Để lại email hoặc SĐT để nhận ngay bộ catalogue 20+ chất liệu vải may đồng phục thực tế tận nơi.
+                    </p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-sm bg-navy-light text-white border-secondary border-opacity-25" placeholder="Nhập email hoặc SĐT...">
+                            <button class="btn btn-brand-orange btn-sm" type="button"><i class="bi bi-send-fill"></i></button>
+                        </div>
+                    </form>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-outline-secondary btn-sm text-white rounded-circle p-1" style="width: 34px; height: 34px;"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm text-white rounded-circle p-1" style="width: 34px; height: 34px;"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm text-white rounded-circle p-1" style="width: 34px; height: 34px;"><i class="bi bi-tiktok"></i></a>
+                        <a href="#" class="btn btn-outline-secondary btn-sm text-white rounded-circle p-1" style="width: 34px; height: 34px;"><i class="bi bi-telephone-fill"></i></a>
+                    </div>
                 </div>
             </div>
-            <hr class="border-secondary my-4">
-            <div class="text-center small text-light">
-                &copy; 2026 - Đồ án Lập trình Web - Đại học Công Thương TP.HCM (HUIT). All rights reserved.
+        </div>
+
+        <div class="footer-bottom pt-3 pb-2 text-center text-white-50 small">
+            <div class="container d-flex flex-wrap justify-content-between align-items-center">
+                <div>
+                    Copyright &copy; 2026 <strong>HUIT UNIFORM & WORKWEAR</strong>. Đồ án Lập trình Web - Trường Đại học Công Thương TP.HCM.
+                </div>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-white-50 text-decoration-none">Chính sách bảo mật</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Quy định đổi trả</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Cam kết chất lượng</a>
+                </div>
             </div>
         </div>
     </footer>
