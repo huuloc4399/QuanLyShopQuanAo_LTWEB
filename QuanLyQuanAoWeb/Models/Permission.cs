@@ -24,6 +24,8 @@ namespace QuanLyQuanAoWeb.Models
         [StringLength(255)]
         public string? Description { get; set; }
 
+        public bool IsActive { get; set; } = true;
+
         public virtual ICollection<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
     }
 }

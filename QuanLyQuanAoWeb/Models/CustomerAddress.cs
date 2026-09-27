@@ -26,7 +26,19 @@ namespace QuanLyQuanAoWeb.Models
         [StringLength(100)]
         public string? City { get; set; }
 
+        [StringLength(100)]
+        public string? District { get; set; }
+
+        [StringLength(100)]
+        public string? Ward { get; set; }
+
         public bool IsDefault { get; set; } = false;
+
+        public bool IsActive { get; set; } = true;
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+        public DateTime? UpdatedAt { get; set; }
 
         [ForeignKey("UserId")]
         public virtual User? User { get; set; }

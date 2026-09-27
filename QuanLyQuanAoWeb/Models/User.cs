@@ -40,6 +40,10 @@ namespace QuanLyQuanAoWeb.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
+        public DateTime? UpdatedAt { get; set; }
+
+        public DateTime? LastLoginAt { get; set; }
+
         [ForeignKey("RoleId")]
         public virtual Role? Role { get; set; }
 
@@ -47,5 +51,8 @@ namespace QuanLyQuanAoWeb.Models
         public virtual ICollection<CustomerAddress> Addresses { get; set; } = new List<CustomerAddress>();
         public virtual ICollection<Cart> Carts { get; set; } = new List<Cart>();
         public virtual ICollection<ProductReview> Reviews { get; set; } = new List<ProductReview>();
+        public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+        public virtual ICollection<CouponUsage> CouponUsages { get; set; } = new List<CouponUsage>();
+        public virtual ICollection<Return> Returns { get; set; } = new List<Return>();
     }
 }

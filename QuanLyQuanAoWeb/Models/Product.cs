@@ -37,11 +37,14 @@ namespace QuanLyQuanAoWeb.Models
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
+        public DateTime? UpdatedAt { get; set; }
+
         [ForeignKey("CategoryId")]
         public virtual Category? Category { get; set; }
 
         public virtual ICollection<ProductVariant> Variants { get; set; } = new List<ProductVariant>();
         public virtual ICollection<ProductReview> Reviews { get; set; } = new List<ProductReview>();
+        public virtual ICollection<ProductImage> Images { get; set; } = new List<ProductImage>();
 
         [NotMapped]
         public decimal FinalPrice => DiscountPercent.HasValue && DiscountPercent.Value > 0

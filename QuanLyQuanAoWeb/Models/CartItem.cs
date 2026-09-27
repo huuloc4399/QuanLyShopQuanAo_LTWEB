@@ -17,6 +17,8 @@ namespace QuanLyQuanAoWeb.Models
 
         public DateTime AddedAt { get; set; } = DateTime.Now;
 
+        public DateTime? UpdatedAt { get; set; }
+
         [ForeignKey("CartId")]
         public virtual Cart? Cart { get; set; }
 

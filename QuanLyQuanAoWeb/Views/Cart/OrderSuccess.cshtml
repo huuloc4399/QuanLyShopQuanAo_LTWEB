@@ -1,0 +1,139 @@
+@model QuanLyQuanAoWeb.Models.Order
+@{
+    ViewData["Title"] = "Đặt Hàng Thành Công";
+    var payment = Model.Payments.FirstOrDefault();
+    var latestHistory = Model.StatusHistories.OrderByDescending(h => h.ChangedAt).FirstOrDefault();
+}
+
+<div class="container py-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <!-- Thẻ thông báo thành công -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 text-center mb-4 bg-white">
+                <div class="mx-auto mb-3 text-success">
+                    <i class="bi bi-check-circle-fill" style="font-size: 4rem;"></i>
+                </div>
+                <h2 class="fw-bold text-dark mb-2">ĐẶT HÀNG THÀNH CÔNG!</h2>
+                <p class="text-muted mb-4 fs-6">
+                    Cảm ơn bạn đã tin tưởng mua sắm tại <strong>Shop Đồng Phục HUIT</strong>. Chúng tôi đã nhận được đơn hàng và đang tiến hành xử lý đóng gói.
+                </p>
+
+                <div class="d-inline-flex flex-wrap justify-content-center gap-3 p-3 bg-light rounded-3 mb-2">
+                    <div>
+                        <span class="text-muted d-block small">MÃ ĐƠN HÀNG</span>
+                        <span class="fw-bold text-danger fs-5">@Model.OrderCode</span>
+                    </div>
+                    <div class="vr d-none d-sm-block"></div>
+                    <div>
+                        <span class="text-muted d-block small">NGÀY ĐẶT</span>
+                        <span class="fw-bold text-dark fs-6">@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</span>
+                    </div>
+                    <div class="vr d-none d-sm-block"></div>
+                    <div>
+                        <span class="text-muted d-block small">PHƯƠNG THỨC THANH TOÁN</span>
+                        <span class="badge bg-primary fs-6">@Model.PaymentMethod</span>
+                    </div>
+                    <div class="vr d-none d-sm-block"></div>
+                    <div>
+                        <span class="text-muted d-block small">TRẠNG THÁI ĐƠN</span>
+                        <span class="badge bg-warning text-dark fs-6">@Model.OrderStatus</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chi tiết người nhận & Hóa đơn snapshot -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                <div class="row g-4">
+                    <div class="col-md-6 border-end">
+                        <h6 class="fw-bold text-dark mb-3"><i class="bi bi-geo-alt-fill text-danger me-2"></i>Địa Chỉ Nhận Hàng</h6>
+                        <p class="mb-1 fw-bold text-dark">@Model.ReceiverName</p>
+                        <p class="mb-1 text-muted"><i class="bi bi-telephone me-2"></i>@Model.ReceiverPhone</p>
+                        @if (!string.IsNullOrEmpty(Model.CustomerEmail))
+                        {
+                            <p class="mb-1 text-muted"><i class="bi bi-envelope me-2"></i>@Model.CustomerEmail</p>
+                        }
+                        <p class="mb-2 text-muted"><i class="bi bi-pin-map me-2"></i>@Model.ShippingAddress</p>
+                        @if (!string.IsNullOrEmpty(Model.OrderNotes))
+                        {
+                            <p class="small text-muted fst-italic"><i class="bi bi-card-text me-2"></i>Ghi chú: @Model.OrderNotes</p>
+                        }
+                    </div>
+
+                    <div class="col-md-6">
+                        <h6 class="fw-bold text-dark mb-3"><i class="bi bi-credit-card-2-back-fill text-danger me-2"></i>Thông Tin Thanh Toán</h6>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Tổng tiền hàng:</span>
+                            <span class="fw-semibold">@Model.Subtotal.ToString("N0") đ</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Phí vận chuyển:</span>
+                            <span class="text-success fw-semibold">Miễn phí</span>
+                        </div>
+                        @if (Model.DiscountAmount > 0)
+                        {
+                            <div class="d-flex justify-content-between mb-2 text-danger">
+                                <span>Voucher giảm giá:</span>
+                                <span class="fw-semibold">-@Model.DiscountAmount.ToString("N0") đ</span>
+                            </div>
+                        }
+                        <hr />
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fs-6 fw-bold">Tổng thanh toán:</span>
+                            <span class="fs-5 fw-bold text-danger">@Model.TotalAmount.ToString("N0") đ</span>
+                        </div>
+                        <div class="small text-muted mt-2">
+                            Tình trạng: <span class="badge bg-secondary">@Model.PaymentStatus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bảng Snapshot Sản Phẩm Theo Hóa Đơn -->
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                <div class="card-header bg-light py-3">
+                    <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-box-seam-fill text-danger me-2"></i>Danh Sách Sản Phẩm (Bản Ghi Lịch Sử Snapshot)</h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Sản Phẩm (Snapshot)</th>
+                                <th>Mã SKU</th>
+                                <th>Kích Thước</th>
+                                <th>Màu Sắc</th>
+                                <th class="text-center">Số Lượng</th>
+                                <th class="text-end pe-4">Đơn Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var d in Model.OrderDetails)
+                            {
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="fw-bold text-dark">@d.ProductNameSnapshot</div>
+                                        <small class="text-muted">Mã: @d.ProductCodeSnapshot</small>
+                                    </td>
+                                    <td><code>@d.SKUSnapshot</code></td>
+                                    <td><span class="badge bg-secondary">@d.SizeNameSnapshot</span></td>
+                                    <td><span class="badge bg-dark">@d.ColorNameSnapshot</span></td>
+                                    <td class="text-center fw-bold">@d.Quantity</td>
+                                    <td class="text-end pe-4 fw-bold text-danger">@((d.UnitPrice * d.Quantity).ToString("N0")) đ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Nút điều hướng -->
+            <div class="text-center d-flex justify-content-center gap-3">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark px-4 py-2">
+                    <i class="bi bi-house-door me-2"></i>Về Trang Chủ
+                </a>
+                <a asp-controller="Home" asp-action="Products" class="btn btn-danger px-4 py-2">
+                    <i class="bi bi-bag-fill me-2"></i>Tiếp Tục Mua Hàng
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

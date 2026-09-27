@@ -9,6 +9,9 @@ namespace QuanLyQuanAoWeb.Models
         [Key]
         public int SupplierId { get; set; }
 
+        [StringLength(50)]
+        public string? SupplierCode { get; set; }
+
         [Required]
         [StringLength(150)]
         public string SupplierName { get; set; } = string.Empty;
@@ -21,6 +24,8 @@ namespace QuanLyQuanAoWeb.Models
 
         [StringLength(255)]
         public string? Address { get; set; }
+
+        public bool IsActive { get; set; } = true;
 
         public virtual ICollection<ImportReceipt> ImportReceipts { get; set; } = new List<ImportReceipt>();
     }

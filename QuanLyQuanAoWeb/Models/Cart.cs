@@ -14,6 +14,12 @@ namespace QuanLyQuanAoWeb.Models
         [StringLength(100)]
         public string? SessionId { get; set; }
 
+        [Required]
+        [StringLength(20)]
+        public string Status { get; set; } = "ACTIVE"; // ACTIVE, CONVERTED, ABANDONED, EXPIRED
+
+        public DateTime? ExpiresAt { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
