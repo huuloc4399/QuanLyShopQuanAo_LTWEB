@@ -3,6 +3,16 @@
     ViewData["Title"] = "Trang Chủ - Xưởng May Đồng Phục & Đồ Bảo Hộ Doanh Nghiệp HUIT";
 }
 
+@if (ViewBag.DbNotice != null)
+{
+    <div class="container mt-3">
+        <div class="alert alert-warning alert-dismissible fade show border-0 shadow-sm rounded-3" role="alert">
+            <i class="bi bi-database-exclamation text-warning fs-5 me-2"></i>@ViewBag.DbNotice
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+}
+
 <!-- ================= 1. HERO BANNER SECTION ================= -->
 <section class="py-5 bg-warm border-bottom border-sand position-relative overflow-hidden">
     <div class="container py-3 py-lg-4">

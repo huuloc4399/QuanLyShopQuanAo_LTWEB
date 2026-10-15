@@ -18,6 +18,18 @@
         </h3>
     </div>
 
+    @if (ViewBag.DbNotice != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show border-0 shadow-sm rounded-3 mb-3" role="alert">
+            <i class="bi bi-database-exclamation text-warning fs-5 me-2"></i>@ViewBag.DbNotice
+            @if (ViewBag.Notice != null)
+            {
+                <div class="small mt-1 text-muted">@ViewBag.Notice</div>
+            }
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
     @if (TempData["ErrorMessage"] != null)
     {
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -78,32 +90,32 @@
                         <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="COD" id="payCod" checked>
                         <label class="form-check-label d-flex align-items-center justify-content-between w-100" for="payCod">
                             <div>
-                                <span class="fw-bold d-block">Thanh toán khi nhận hàng (COD)</span>
-                                <small class="text-muted">Kiểm tra hàng trước khi thanh toán cho nhân viên giao hàng</small>
+                                <span class="fw-bold d-block text-dark">Thanh toán khi nhận hàng (COD)</span>
+                                <small class="text-muted">Kiểm tra sản phẩm và thanh toán tiền mặt cho bưu tá khi nhận hàng</small>
                             </div>
-                            <i class="bi bi-cash-stack text-success fs-4"></i>
+                            <span class="badge bg-success-subtle text-success p-2 fs-5"><i class="bi bi-cash-stack"></i></span>
                         </label>
                     </div>
 
                     <div class="form-check p-3 border rounded-3 mb-2">
-                        <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="BANK_TRANSFER" id="payBank">
-                        <label class="form-check-label d-flex align-items-center justify-content-between w-100" for="payBank">
-                            <div>
-                                <span class="fw-bold d-block">Chuyển khoản qua Ngân Hàng (QR Code)</span>
-                                <small class="text-muted">Quét mã VietQR chuyển khoản nhanh 24/7</small>
-                            </div>
-                            <i class="bi bi-bank text-primary fs-4"></i>
-                        </label>
-                    </div>
-
-                    <div class="form-check p-3 border rounded-3">
                         <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="VNPAY" id="payVnpay">
                         <label class="form-check-label d-flex align-items-center justify-content-between w-100" for="payVnpay">
                             <div>
-                                <span class="fw-bold d-block">Cổng thanh toán điện tử VNPay / Ví MoMo</span>
-                                <small class="text-muted">Thẻ ATM nội địa, Thẻ quốc tế Visa/Mastercard</small>
+                                <span class="fw-bold d-block text-primary">Cổng thanh toán VNPay (Sandbox)</span>
+                                <small class="text-muted">Quét mã VNPAY-QR, Thẻ ATM 40+ Ngân hàng nội địa, Thẻ Visa/Mastercard</small>
                             </div>
-                            <i class="bi bi-credit-card-2-front text-danger fs-4"></i>
+                            <span class="badge bg-primary-subtle text-primary p-2 fs-5"><i class="bi bi-qr-code-scan"></i></span>
+                        </label>
+                    </div>
+
+                    <div class="form-check p-3 border rounded-3 mb-2">
+                        <input class="form-check-input" type="radio" asp-for="PaymentMethod" value="MOMO" id="payMomo">
+                        <label class="form-check-label d-flex align-items-center justify-content-between w-100" for="payMomo">
+                            <div>
+                                <span class="fw-bold d-block text-danger">Ví điện tử MoMo (Sandbox)</span>
+                                <small class="text-muted">Quét mã MoMo-QR hoặc ứng dụng Ví điện tử MoMo an toàn 24/7</small>
+                            </div>
+                            <span class="badge bg-danger-subtle text-danger p-2 fs-5"><i class="bi bi-wallet2"></i></span>
                         </label>
                     </div>
                 </div>
