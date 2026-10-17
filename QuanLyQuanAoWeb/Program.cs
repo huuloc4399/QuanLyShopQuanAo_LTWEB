@@ -31,6 +31,16 @@ builder.Services.AddSession(options =>
 // 4. Cấu hình MVC Controllers & Views
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient();
+
+// 5. Cấu hình Cổng thanh toán trực tuyến (VNPay Sandbox & MoMo Sandbox)
+builder.Services.Configure<QuanLyQuanAoWeb.Services.Payment.VNPaySettings>(
+    builder.Configuration.GetSection(QuanLyQuanAoWeb.Services.Payment.VNPaySettings.SectionName));
+builder.Services.Configure<QuanLyQuanAoWeb.Services.Payment.MoMoSettings>(
+    builder.Configuration.GetSection(QuanLyQuanAoWeb.Services.Payment.MoMoSettings.SectionName));
+
+builder.Services.AddScoped<QuanLyQuanAoWeb.Services.Payment.IVNPayService, QuanLyQuanAoWeb.Services.Payment.VNPayService>();
+builder.Services.AddScoped<QuanLyQuanAoWeb.Services.Payment.IMoMoService, QuanLyQuanAoWeb.Services.Payment.MoMoService>();
 
 var app = builder.Build();
 
